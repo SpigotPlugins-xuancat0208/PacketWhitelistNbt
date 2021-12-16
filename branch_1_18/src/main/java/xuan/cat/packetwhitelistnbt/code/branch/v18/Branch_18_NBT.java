@@ -34,6 +34,6 @@ public final class Branch_18_NBT implements BranchNBT {
     public org.bukkit.inventory.ItemStack toItem(BranchNBTCompound nbt) {
         ItemStack item = ItemStack.a(((Branch_18_NBTCompound) nbt).getNMSTag());
         item.convertStack(nbt.getInt("version"));
-        return item.getBukkitStack();
+        return CraftItemStack.asBukkitCopy(item);
     }
 }

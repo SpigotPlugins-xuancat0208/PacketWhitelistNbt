@@ -30,7 +30,7 @@ public class Branch_18_PacketWindowItems {
         try {
             List<ItemStack> nonNullList = ((List<ItemStack>) field_Items.get(packet));
             for (ItemStack item : nonNullList) {
-                items.add(item.getBukkitStack());
+                items.add(CraftItemStack.asBukkitCopy(item));
             }
         } catch (Exception ex) {
             ex.printStackTrace();

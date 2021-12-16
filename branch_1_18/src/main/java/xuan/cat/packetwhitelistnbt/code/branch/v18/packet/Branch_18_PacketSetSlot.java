@@ -24,7 +24,7 @@ public class Branch_18_PacketSetSlot {
     }
     public org.bukkit.inventory.ItemStack getItem() {
         try {
-            return ((ItemStack) field_itemStack.get(packet)).getBukkitStack();
+            return CraftItemStack.asBukkitCopy((ItemStack) field_itemStack.get(packet));
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
