@@ -35,7 +35,14 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     }
 
     public Object get(String key) {
-        return tag.c(key);
+        NBTBase base = tag.c(key);
+        if (base instanceof NBTTagCompound) {
+            return new Branch_18_NBTCompound((NBTTagCompound) base);
+        } else if (base instanceof NBTTagList) {
+            return new Branch_18_NBTList((NBTTagList) base);
+        } else {
+            return base;
+        }
     }
 
     public Set<String> getKeys() {
@@ -75,7 +82,13 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     }
 
     public void set(String key, Object value) {
-        tag.a(key, (NBTBase) value);
+        if (value instanceof Branch_18_NBTCompound) {
+            tag.a(key, ((Branch_18_NBTCompound) value).getNMSTag());
+        } else if (value instanceof Branch_18_NBTList) {
+            tag.a(key, ((Branch_18_NBTList) value).getNMSTag());
+        } else {
+            tag.a(key, (NBTBase) value);
+        }
     }
 
     public void setByte(String key, byte value) {
