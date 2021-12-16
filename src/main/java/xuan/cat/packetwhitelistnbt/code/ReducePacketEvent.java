@@ -14,7 +14,7 @@ public final class ReducePacketEvent extends PacketAdapter {
     private final BranchPacket branchPacket;
 
     public ReducePacketEvent(Plugin plugin, ConfigData configData, BranchPacket branchPacket) {
-        super(plugin, ListenerPriority.HIGHEST, PacketType.Play.Server.SET_SLOT, PacketType.Play.Server.WINDOW_ITEMS, PacketType.Play.Server.ENTITY_EQUIPMENT, PacketType.Play.Server.RECIPE_UPDATE);
+        super(plugin, ListenerPriority.HIGHEST, PacketType.Play.Server.SET_SLOT, PacketType.Play.Server.WINDOW_ITEMS, PacketType.Play.Server.ENTITY_EQUIPMENT, PacketType.Play.Server.RECIPE_UPDATE, PacketType.Play.Server.ENTITY_METADATA);
         this.configData = configData;
         this.branchPacket = branchPacket;
     }
@@ -34,6 +34,8 @@ public final class ReducePacketEvent extends PacketAdapter {
                 branchPacket.convertEntityEquipment(event.getPacket(), configData::filtrationItem);
             } else if (packetType == PacketType.Play.Server.RECIPE_UPDATE) {
                 branchPacket.convertRecipeUpdate(event.getPacket(), configData::filtrationRecipe);
+            } else if (packetType == PacketType.Play.Server.ENTITY_METADATA) {
+                branchPacket.convertEntityMetadata(event.getPacket(), configData::filtrationItem);
             }
         }
     }

@@ -27,4 +27,9 @@ public class Branch_18_Packet implements BranchPacket {
     public void convertRecipeUpdate(PacketContainer container, Function<Recipe, Recipe> convert) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void convertEntityMetadata(PacketContainer container, Function<ItemStack, ItemStack> convert) {
+        throw new UnsupportedOperationException();
+    }
 }

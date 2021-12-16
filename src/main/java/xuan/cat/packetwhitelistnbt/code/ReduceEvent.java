@@ -18,51 +18,6 @@ public final class ReduceEvent implements Listener {
         this.reduceServer = reduceServer;
     }
 
-
-//    /**
-//     * @param event 庫存欄位
-//     */
-//    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-//    public void on(ServerSetSlotPacketEvent event) {
-//        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-//            event.setItem(configData.filtrationItem(event.getItem()));
-//        }
-//    }
-//
-//    /**
-//     * @param event 庫存全部物品
-//     */
-//    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-//    public void on(ServerWindowItemsPacketEvent event) {
-//        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-//            List<ItemStack> itemList = new ArrayList<>();
-//            event.getItemList().forEach(item -> itemList.add(configData.filtrationItem(item)));
-//            event.setItemList(itemList);
-//        }
-//    }
-//
-//    /**
-//     * @param event 實體裝備物品
-//     */
-//    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-//    public void on(ServerEntityEquipmentPacketEvent event) {
-//        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-//            Map<EquipmentSlot, ItemStack> equipmentSlotMap = new HashMap<>();
-//            event.getEquipmentItemMap().forEach((equipmentSlot, item) -> equipmentSlotMap.put(equipmentSlot, configData.filtrationItem(item)));
-//            event.setEquipmentItemMap(equipmentSlotMap);
-//        }
-//    }
-//
-//    /**
-//     * @param event 合成配方更新
-//     */
-//    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-//    public void on(ServerRecipeUpdatePacketEvent event) {
-//        List<Recipe> recipeList = new ArrayList<>();
-//        event.getRecipeList().forEach(recipe -> recipeList.add(configData.filtrationRecipe(recipe)));
-//        event.setRecipeList(recipeList);
-//    }
-
     /**
      * @param event 玩家切換遊戲模式
      */

@@ -14,4 +14,6 @@ public interface BranchPacket {
     void convertEntityEquipment(PacketContainer container, Function<ItemStack, ItemStack> convert);
 
     void convertRecipeUpdate(PacketContainer container, Function<Recipe, Recipe> convert);
+
+    void convertEntityMetadata(PacketContainer container, Function<ItemStack, ItemStack> convert);
 }
