@@ -8,6 +8,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
+import xuan.cat.packetwhitelistnbt.code.branch.v18.Branch_18_NBT;
+import xuan.cat.packetwhitelistnbt.code.branch.v18.Branch_18_Packet;
 import xuan.cat.packetwhitelistnbt.code.command.Command;
 import xuan.cat.packetwhitelistnbt.code.command.CommandSuggest;
 import xuan.cat.packetwhitelistnbt.code.data.ConfigData;
@@ -25,6 +27,36 @@ public final class Index extends JavaPlugin {
         protocolManager = ProtocolLibrary.getProtocolManager();
 
         saveDefaultConfig();
+
+        // 檢測版本
+        String bukkitVersion = Bukkit.getBukkitVersion();
+        if (bukkitVersion.matches("1\\.14.*\\-R0\\.1.*")) {
+            // 1.14
+//            branchPacket    = new Branch_14_R1_Packet();
+//            branchMinecraft = new Branch_14_R1_Minecraft();
+//            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
+        } else if (bukkitVersion.matches("1\\.15.*\\-R0\\.1.*")) {
+            // 1.15
+//            branchPacket    = new Branch_15_R1_Packet();
+//            branchMinecraft = new Branch_15_R1_Minecraft();
+//            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
+        } else if (bukkitVersion.matches("1\\.16.*\\-R0\\.1.*")) {
+            // 1.16
+//            branchPacket    = new Branch_16_R3_Packet();
+//            branchMinecraft = new Branch_16_R3_Minecraft();
+//            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
+        } else if (bukkitVersion.matches("1\\.17.*\\-R0\\.1.*")) {
+            // 1.17
+//            branchPacket    = new Branch_17_Packet();
+//            branchMinecraft = new Branch_17_Minecraft();
+//            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
+        } else if (bukkitVersion.matches("1\\.18.*\\-R0\\.1.*")) {
+            // 1.18
+            branchPacket    = new Branch_18_Packet();
+            branchNBT       = new Branch_18_NBT();
+        } else {
+            throw new NullPointerException("Unsupported MC version");
+        }
 
         configData = new ConfigData(this, getConfig(), branchNBT);
         reduceServer = new ReduceServer(configData, this);
