@@ -149,8 +149,13 @@ public final class ConfigData {
 
         } else if (recipe instanceof SmithingRecipe) {
             SmithingRecipe source = (SmithingRecipe) recipe;
-            return new SmithingRecipe(source.getKey(), filtrationItem(source.getResult()), filtrationRecipeChoice(source.getBase()), filtrationRecipeChoice(source.getAddition()), source.willCopyNbt());
-
+            try {
+                // 適用於 paper
+                return new SmithingRecipe(source.getKey(), filtrationItem(source.getResult()), filtrationRecipeChoice(source.getBase()), filtrationRecipeChoice(source.getAddition()), source.willCopyNbt());
+            } catch (NoSuchMethodError noSuchMethodError) {
+                // 適用於 spigot (不推薦)
+                return new SmithingRecipe(source.getKey(), filtrationItem(source.getResult()), filtrationRecipeChoice(source.getBase()), filtrationRecipeChoice(source.getAddition()));
+            }
         } else if (recipe instanceof SmokingRecipe) {
             SmokingRecipe source = (SmokingRecipe) recipe;
             return new SmokingRecipe(source.getKey(), filtrationItem(source.getResult()), source.getInputChoice(), source.getExperience(), source.getCookingTime());
