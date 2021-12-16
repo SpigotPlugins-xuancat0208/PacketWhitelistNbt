@@ -10,6 +10,8 @@
         <module name="branch_1_17" />
         <module name="PacketWhitelistNbt" />
         <module name="branch_1_16" />
+        <module name="branch_1_15" />
+        <module name="branch_1_14" />
       </profile>
     </annotationProcessing>
   </component>

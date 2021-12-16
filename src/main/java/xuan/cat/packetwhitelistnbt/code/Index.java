@@ -9,6 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
+import xuan.cat.packetwhitelistnbt.code.branch.v14.Branch_14_Minecraft;
+import xuan.cat.packetwhitelistnbt.code.branch.v14.Branch_14_NBT;
+import xuan.cat.packetwhitelistnbt.code.branch.v14.Branch_14_Packet;
+import xuan.cat.packetwhitelistnbt.code.branch.v15.Branch_15_Minecraft;
+import xuan.cat.packetwhitelistnbt.code.branch.v15.Branch_15_NBT;
+import xuan.cat.packetwhitelistnbt.code.branch.v15.Branch_15_Packet;
 import xuan.cat.packetwhitelistnbt.code.branch.v16.Branch_16_Minecraft;
 import xuan.cat.packetwhitelistnbt.code.branch.v16.Branch_16_NBT;
 import xuan.cat.packetwhitelistnbt.code.branch.v16.Branch_16_Packet;
@@ -39,17 +45,17 @@ public final class Index extends JavaPlugin {
 
         // 檢測版本
         String bukkitVersion = Bukkit.getBukkitVersion();
-        /*if (bukkitVersion.matches("1\\.14.*\\-R0\\.1.*")) {
+        if (bukkitVersion.matches("1\\.14.*\\-R0\\.1.*")) {
             // 1.14
-            branchPacket    = new Branch_14_R1_Packet();
-            branchMinecraft = new Branch_14_R1_Minecraft();
-            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
+            branchPacket    = new Branch_14_Packet();
+            branchNBT       = new Branch_14_NBT();
+            branchMinecraft = new Branch_14_Minecraft();
         } else if (bukkitVersion.matches("1\\.15.*\\-R0\\.1.*")) {
             // 1.15
-            branchPacket    = new Branch_15_R1_Packet();
-            branchMinecraft = new Branch_15_R1_Minecraft();
-            chunkServer     = new ChunkServer(configData, this, ViewShape.SQUARE, branchMinecraft, branchPacket);
-        } else */if (bukkitVersion.matches("1\\.16.*\\-R0\\.1.*")) {
+            branchPacket    = new Branch_15_Packet();
+            branchNBT       = new Branch_15_NBT();
+            branchMinecraft = new Branch_15_Minecraft();
+        } else if (bukkitVersion.matches("1\\.16.*\\-R0\\.1.*")) {
             // 1.16
             branchPacket    = new Branch_16_Packet();
             branchNBT       = new Branch_16_NBT();
