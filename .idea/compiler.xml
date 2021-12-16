@@ -7,7 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="branch_1_18" />
+        <module name="branch_1_17" />
         <module name="PacketWhitelistNbt" />
+        <module name="branch_1_16" />
       </profile>
     </annotationProcessing>
   </component>
