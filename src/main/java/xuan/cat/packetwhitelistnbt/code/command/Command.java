@@ -1,7 +1,7 @@
 package xuan.cat.packetwhitelistnbt.code.command;
 
-import net.md_5.bungee.api.chat.TranslatableComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,11 +20,11 @@ public final class Command implements CommandExecutor {
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String message, String[] parameters) {
         if (!sender.hasPermission("command.packetwhitelistnbt")) {
             // 無權限
-            sender.sendMessage(new TranslatableComponent("server.command.no_permission"));
+            sender.sendMessage(ChatColor.RED + "No permission");
         } else {
             if (parameters.length != 1 || parameters[0] == null) {
                 // 缺少參數
-                sender.sendMessage(new TranslatableComponent("server.command.missing_parameters"));
+                sender.sendMessage(ChatColor.RED + "Missing parameters");
             } else {
                 switch (parameters[0]) {
                     case "reload":
@@ -34,16 +34,16 @@ public final class Command implements CommandExecutor {
                                 player.updateInventory();
                             }
                             // 重讀配置完成
-                            sender.sendMessage(new TranslatableComponent("server.command.reread_configuration_successfully"));
+                            sender.sendMessage(ChatColor.RED + "Reread configuration successfully");
                         } catch (Exception ex) {
                             ex.printStackTrace();
                             // 重讀配置錯誤
-                            sender.sendMessage(new TranslatableComponent("server.command.reread_configuration_error"));
+                            sender.sendMessage(ChatColor.RED + "Reread configuration error");
                         }
                         break;
                     default:
                         // 未知的參數類型
-                        sender.sendMessage(new TranslatableComponent("server.command.unknown_parameter_type"));
+                        sender.sendMessage(ChatColor.RED + "Unknown parameter type");
                         break;
                 }
             }

@@ -3,7 +3,6 @@ package xuan.cat.packetwhitelistnbt.code.branch.v18.nbt;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTAbstract;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTCompound;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTList;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTType;

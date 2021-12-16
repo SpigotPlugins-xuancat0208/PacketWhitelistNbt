@@ -1,41 +1,15 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v18;
 
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.crafting.*;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.*;
+import org.bukkit.craftbukkit.v1_18_R1.util.CraftNamespacedKey;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.*;
+
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.crafting.IRecipe;
-import net.minecraft.world.item.crafting.IRecipeComplex;
-import net.minecraft.world.item.crafting.RecipeBlasting;
-import net.minecraft.world.item.crafting.RecipeCampfire;
-import net.minecraft.world.item.crafting.RecipeItemStack;
-import net.minecraft.world.item.crafting.RecipeSmithing;
-import net.minecraft.world.item.crafting.RecipeSmoking;
-import net.minecraft.world.item.crafting.RecipeStonecutting;
-import net.minecraft.world.item.crafting.ShapedRecipes;
-import net.minecraft.world.item.crafting.ShapelessRecipes;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftBlastingRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftCampfireRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftComplexRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftFurnaceRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftShapedRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftShapelessRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftSmithingRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftSmokingRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftStonecuttingRecipe;
-import org.bukkit.craftbukkit.v1_18_R1.util.CraftNamespacedKey;
-import org.bukkit.inventory.BlastingRecipe;
-import org.bukkit.inventory.CampfireRecipe;
-import org.bukkit.inventory.ComplexRecipe;
-import org.bukkit.inventory.FurnaceRecipe;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.SmithingRecipe;
-import org.bukkit.inventory.SmokingRecipe;
-import org.bukkit.inventory.StonecuttingRecipe;
 
 public class Branch_18_RecipeSerializer {
     private static Field field_CraftComplexRecipe_recipe;

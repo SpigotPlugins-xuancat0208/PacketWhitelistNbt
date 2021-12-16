@@ -5,7 +5,6 @@ import net.minecraft.network.protocol.game.PacketPlayOutEntityEquipment;
 import net.minecraft.network.protocol.game.PacketPlayOutRecipeUpdate;
 import net.minecraft.network.protocol.game.PacketPlayOutSetSlot;
 import net.minecraft.network.protocol.game.PacketPlayOutWindowItems;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
@@ -15,7 +14,6 @@ import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketRecipe
 import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketSetSlot;
 import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketWindowItems;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
