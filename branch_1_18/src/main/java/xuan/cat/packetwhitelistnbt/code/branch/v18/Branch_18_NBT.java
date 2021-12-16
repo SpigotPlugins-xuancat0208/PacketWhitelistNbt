@@ -9,6 +9,8 @@ import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTList;
 import xuan.cat.packetwhitelistnbt.code.branch.v18.nbt.Branch_18_NBTCompound;
 import xuan.cat.packetwhitelistnbt.code.branch.v18.nbt.Branch_18_NBTList;
 
+import java.lang.reflect.Field;
+
 public final class Branch_18_NBT implements BranchNBT {
     @Override
     public BranchNBTCompound createCompound() {
@@ -20,12 +22,26 @@ public final class Branch_18_NBT implements BranchNBT {
         return new Branch_18_NBTList();
     }
 
+
+    private static Field field_CraftItemStack_handle;
+    static {
+        try {
+            field_CraftItemStack_handle = CraftItemStack.class.getDeclaredField("handle");
+            field_CraftItemStack_handle.setAccessible(true);
+        } catch (NoSuchFieldException ex) {
+            ex.printStackTrace();
+        }
+    }
     @Override
     public BranchNBTCompound fromItem(org.bukkit.inventory.ItemStack item) {
         if (!(item instanceof CraftItemStack))
             item = CraftItemStack.asCraftCopy(item);
         Branch_18_NBTCompound nbt = new Branch_18_NBTCompound();
-        ((CraftItemStack) item).handle.b(nbt.getNMSTag());
+        try {
+            ((ItemStack) field_CraftItemStack_handle.get(item)).b(nbt.getNMSTag());
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        }
         nbt.setInt("version", CraftMagicNumbers.INSTANCE.getDataVersion());
         return nbt;
     }
