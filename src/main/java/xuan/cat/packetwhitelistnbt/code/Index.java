@@ -6,8 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
+import xuan.cat.packetwhitelistnbt.code.branch.v18.Branch_18_Minecraft;
 import xuan.cat.packetwhitelistnbt.code.branch.v18.Branch_18_NBT;
 import xuan.cat.packetwhitelistnbt.code.branch.v18.Branch_18_Packet;
 import xuan.cat.packetwhitelistnbt.code.command.Command;
@@ -21,6 +23,7 @@ public final class Index extends JavaPlugin {
     private static ConfigData configData;
     private static BranchNBT branchNBT;
     private static BranchPacket branchPacket;
+    private static BranchMinecraft branchMinecraft;
 
     public void onEnable() {
         plugin = this;
@@ -54,6 +57,7 @@ public final class Index extends JavaPlugin {
             // 1.18
             branchPacket    = new Branch_18_Packet();
             branchNBT       = new Branch_18_NBT();
+            branchMinecraft = new Branch_18_Minecraft();
         } else {
             throw new NullPointerException("Unsupported MC version");
         }
@@ -62,7 +66,7 @@ public final class Index extends JavaPlugin {
         reduceServer = new ReduceServer(configData, this);
 
         Bukkit.getPluginManager().registerEvents(new ReduceEvent(configData, reduceServer), this);
-        protocolManager.addPacketListener(new ReducePacketEvent(plugin, configData, branchPacket));
+        protocolManager.addPacketListener(new ReducePacketEvent(plugin, configData, branchPacket, branchMinecraft));
 
         // 指令
         PluginCommand command = getCommand("whitelistnbt");

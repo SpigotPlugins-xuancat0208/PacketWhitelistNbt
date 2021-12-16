@@ -6,7 +6,7 @@ import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 
-public class Branch_18_PacketSetSlot {
+public final class Branch_18_PacketSetSlot {
     private final PacketPlayOutSetSlot packet;
 
     public Branch_18_PacketSetSlot(PacketPlayOutSetSlot packet) {

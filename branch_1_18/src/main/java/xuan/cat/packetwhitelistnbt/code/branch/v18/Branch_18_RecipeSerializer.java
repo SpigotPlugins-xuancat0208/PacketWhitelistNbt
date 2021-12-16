@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
-public class Branch_18_RecipeSerializer {
+public final class Branch_18_RecipeSerializer {
     private static Field field_CraftComplexRecipe_recipe;
     static {
         try {

@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Branch_18_PacketWindowItems {
+public final class Branch_18_PacketWindowItems {
     private final PacketPlayOutWindowItems packet;
 
     public Branch_18_PacketWindowItems(PacketPlayOutWindowItems packet) {

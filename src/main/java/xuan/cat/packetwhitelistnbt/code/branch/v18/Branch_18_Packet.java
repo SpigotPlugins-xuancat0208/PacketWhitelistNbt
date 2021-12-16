@@ -7,7 +7,7 @@ import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 
 import java.util.function.Function;
 
-public class Branch_18_Packet implements BranchPacket {
+public final class Branch_18_Packet implements BranchPacket {
     @Override
     public void convertSetSlot(PacketContainer container, Function<ItemStack, ItemStack> convert) {
         throw new UnsupportedOperationException();

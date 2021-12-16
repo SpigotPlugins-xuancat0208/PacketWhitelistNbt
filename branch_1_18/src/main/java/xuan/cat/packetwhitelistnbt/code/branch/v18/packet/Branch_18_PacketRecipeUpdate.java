@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Branch_18_PacketRecipeUpdate {
+public final class Branch_18_PacketRecipeUpdate {
     private final PacketPlayOutRecipeUpdate packet;
 
     public Branch_18_PacketRecipeUpdate(PacketPlayOutRecipeUpdate packet) {

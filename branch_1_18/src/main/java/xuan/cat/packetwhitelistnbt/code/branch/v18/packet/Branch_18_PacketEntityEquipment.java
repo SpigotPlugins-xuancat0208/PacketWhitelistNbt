@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Branch_18_PacketEntityEquipment {
+public final class Branch_18_PacketEntityEquipment {
     private final PacketPlayOutEntityEquipment packet;
 
     public Branch_18_PacketEntityEquipment(PacketPlayOutEntityEquipment packet) {

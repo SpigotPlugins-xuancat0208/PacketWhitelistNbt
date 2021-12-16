@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Branch_18_Packet implements BranchPacket {
+public final class Branch_18_Packet implements BranchPacket {
     @Override
     public void convertSetSlot(PacketContainer container, Function<org.bukkit.inventory.ItemStack, org.bukkit.inventory.ItemStack> convert) {
         Branch_18_PacketSetSlot packet = new Branch_18_PacketSetSlot((PacketPlayOutSetSlot) container.getHandle());
