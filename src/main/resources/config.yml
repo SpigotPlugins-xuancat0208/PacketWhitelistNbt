@@ -1,0 +1,33 @@
+# 物品有關的配置
+# Configuration of item
+item:
+  # 允許的標籤
+  #   會轉換非創造模式玩家顯示的一切物品
+  #   無允許的標籤不會發送給客戶端
+  # Allowed Tags
+  #   Converts all items displayed by non-creation mode players
+  #   No allowed tags will be sent to the client
+  allowed-tag:
+    - CustomModelData
+    - Damage
+    - HideFlags
+    - Unbreakable
+    - Enchantments.*
+    - StoredEnchantments.*
+    - display.*
+    - AttributeModifiers.*
+    - CanPlaceOn.*
+    - CanDestroy.*
+    - BlockEntityTag.Items.[].Count
+    - BlockEntityTag.Items.[].Slot
+    - BlockEntityTag.Items.[].id
+    - BlockEntityTag.Items.[].tag.display.*
+    - BlockEntityTag.Patterns.*
+    - BlockStateTag.*
+    - Potion
+    - CustomPotionColor
+    - CustomPotionEffects.*
+    - map
+    - pages.*
+    - LodestoneDimension
+    - LodestonePos.*
