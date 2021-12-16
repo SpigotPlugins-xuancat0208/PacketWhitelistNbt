@@ -34,7 +34,7 @@ public final class Command implements CommandExecutor {
                                 player.updateInventory();
                             }
                             // 重讀配置完成
-                            sender.sendMessage(ChatColor.RED + "Reread configuration successfully");
+                            sender.sendMessage(ChatColor.YELLOW + "Reread configuration successfully");
                         } catch (Exception ex) {
                             ex.printStackTrace();
                             // 重讀配置錯誤
