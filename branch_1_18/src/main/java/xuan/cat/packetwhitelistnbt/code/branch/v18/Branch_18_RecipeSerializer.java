@@ -74,7 +74,13 @@ public class Branch_18_RecipeSerializer {
 
                 if (recipe instanceof SmithingRecipe) {
                     CraftSmithingRecipe craftRecipe = CraftSmithingRecipe.fromBukkitRecipe((SmithingRecipe)recipe);
-                    return new RecipeSmithing(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
+                    try {
+                        // 適用於 paper
+                        return new RecipeSmithing(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
+                    } catch (NoSuchMethodError noSuchMethodError) {
+                        // 適用於 spigot (不推薦)
+                        return new RecipeSmithing(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+                    }
                 }
 
                 if (recipe instanceof SmokingRecipe) {
