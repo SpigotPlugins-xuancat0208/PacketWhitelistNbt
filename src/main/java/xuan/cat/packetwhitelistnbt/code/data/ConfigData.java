@@ -3,7 +3,7 @@ package xuan.cat.packetwhitelistnbt.code.data;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTCompound;
