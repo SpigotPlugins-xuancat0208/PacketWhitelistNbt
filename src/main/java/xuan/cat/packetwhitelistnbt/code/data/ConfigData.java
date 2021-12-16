@@ -210,7 +210,7 @@ public final class ConfigData {
                         }
                         break;
                     case NBT_LIST:
-                        BranchNBTList<?> cloneList = filtrationTagComparatorList(branchNBT, sourceMap.getList(tag), comparator != null ? comparator.getLayer(tag) : null, allowedAll);
+                        BranchNBTList cloneList = filtrationTagComparatorList(branchNBT, sourceMap.getList(tag), comparator != null ? comparator.getLayer(tag) : null, allowedAll);
                         if (cloneList != null) {
                             closeMap.setList(tag, cloneList);
                         }
@@ -223,14 +223,14 @@ public final class ConfigData {
         }
         return closeMap.size() == 0 ? null : closeMap;
     }
-    private static BranchNBTList<?> filtrationTagComparatorList(BranchNBT branchNBT,BranchNBTList<?> sourceList, TagComparator comparator, boolean allowedAll) {
+    private static BranchNBTList filtrationTagComparatorList(BranchNBT branchNBT,BranchNBTList sourceList, TagComparator comparator, boolean allowedAll) {
         if (!allowedAll && comparator == null) {
             return null;
         }
         if (comparator != null) {
             allowedAll |= comparator.allowedAll;
         }
-        BranchNBTList<?> closeList = branchNBT.createList();
+        BranchNBTList closeList = branchNBT.createList();
         if (allowedAll || comparator.isAllowed("[]")) {
             switch (sourceList.getOwnType()) {
                 case NBT_COMPOUND:
@@ -243,7 +243,7 @@ public final class ConfigData {
                     break;
                 case NBT_LIST:
                     for (Object entry : sourceList) {
-                        BranchNBTList<?> layerList = filtrationTagComparatorList(branchNBT, (BranchNBTList<?>) entry, comparator != null ? comparator.getLayer("[]") : null, allowedAll);
+                        BranchNBTList layerList = filtrationTagComparatorList(branchNBT, (BranchNBTList) entry, comparator != null ? comparator.getLayer("[]") : null, allowedAll);
                         if (layerList != null) {
                             closeList.add(layerList);
                         }

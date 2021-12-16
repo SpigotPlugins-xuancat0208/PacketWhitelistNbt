@@ -1,5 +1,6 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v18;
 
+import org.bukkit.inventory.ItemStack;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTCompound;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTList;
@@ -16,12 +17,12 @@ public final class Branch_18_NBT implements BranchNBT {
     }
 
     @Override
-    public BranchNBTCompound fromItem(org.bukkit.inventory.ItemStack item) {
+    public BranchNBTCompound fromItem(ItemStack item) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public org.bukkit.inventory.ItemStack toItem(BranchNBTCompound nbt) {
+    public ItemStack toItem(BranchNBTCompound nbt) {
         throw new UnsupportedOperationException();
     }
 }

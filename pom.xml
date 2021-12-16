@@ -94,7 +94,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.70.Final</version>
+            <version>4.1.72.Final</version>
             <scope>provided</scope>
         </dependency>
 
@@ -125,17 +125,17 @@
             <version>4.7.0</version>
         </dependency>
 
-        <!-- 1.18 paper -->
+        <!-- 1.18 -->
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.18</artifactId>
-            <version>11</version>
+            <version>42</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.18</artifactId>
-            <version>11</version>
+            <version>42</version>
             <classifier>mojangapi</classifier>
         </dependency>
     </dependencies>
