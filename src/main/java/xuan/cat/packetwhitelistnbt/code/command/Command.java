@@ -18,7 +18,7 @@ public final class Command implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String message, String[] parameters) {
-        if (!sender.hasPermission("command.packetwhitelistnbt")) {
+        if (!sender.hasPermission("command.whitelistnbt")) {
             // 無權限
             sender.sendMessage(ChatColor.RED + "No permission");
         } else {

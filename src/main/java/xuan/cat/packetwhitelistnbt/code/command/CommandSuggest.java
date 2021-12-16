@@ -12,7 +12,7 @@ public final class CommandSuggest implements TabCompleter {
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] parameters) {
-        if (!sender.hasPermission("command.packetwhitelistnbt")) {
+        if (!sender.hasPermission("command.whitelistnbt")) {
             return new ArrayList<>();
         }
 
