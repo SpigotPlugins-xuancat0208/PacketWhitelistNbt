@@ -29,10 +29,8 @@ public final class ReducePacketEvent extends PacketAdapter {
         Player player = event.getPlayer();
         if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
             return;
-
-        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
+        if (player.getGameMode() != GameMode.CREATIVE) {
             PacketType packetType = event.getPacketType();
-
             if (packetType == PacketType.Play.Server.SET_SLOT) {
                 branchPacket.convertSetSlot(event.getPacket(), configData::filtrationItem);
             } else if (packetType == PacketType.Play.Server.WINDOW_ITEMS) {
