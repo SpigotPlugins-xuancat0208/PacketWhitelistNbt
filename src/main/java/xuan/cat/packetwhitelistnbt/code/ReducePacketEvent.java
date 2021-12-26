@@ -27,7 +27,7 @@ public final class ReducePacketEvent extends PacketAdapter {
         if (event.isCancelled() || event.isReadOnly())
             return;
         Player player = event.getPlayer();
-        if (player.hasPermission("packetnbt.ignore_item_whitelist"))
+        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
             return;
 
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
