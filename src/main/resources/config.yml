@@ -31,3 +31,4 @@ item:
     - pages.*
     - LodestoneDimension
     - LodestonePos.*
+    - SkullOwner.*
