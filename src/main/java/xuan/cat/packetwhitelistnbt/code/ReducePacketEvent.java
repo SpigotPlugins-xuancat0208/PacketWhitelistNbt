@@ -5,6 +5,7 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
@@ -25,9 +26,12 @@ public final class ReducePacketEvent extends PacketAdapter {
     public void onPacketSending(PacketEvent event) {
         if (event.isCancelled() || event.isReadOnly())
             return;
+        Player player = event.getPlayer();
+        if (player.hasPermission("packetnbt.ignore_item_whitelist"))
+            return;
 
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-            PacketType      packetType  = event.getPacketType();
+            PacketType packetType = event.getPacketType();
 
             if (packetType == PacketType.Play.Server.SET_SLOT) {
                 branchPacket.convertSetSlot(event.getPacket(), configData::filtrationItem);
