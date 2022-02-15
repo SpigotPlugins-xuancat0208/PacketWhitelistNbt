@@ -45,33 +45,33 @@ public final class Index extends JavaPlugin {
 
         // 檢測版本
         String bukkitVersion = Bukkit.getBukkitVersion();
-        if (bukkitVersion.matches("1\\.14.*\\-R0\\.1.*")) {
+        if (bukkitVersion.matches("^1\\.14\\.[0-9]*")) {
             // 1.14
             branchPacket    = new Branch_14_Packet();
             branchNBT       = new Branch_14_NBT();
             branchMinecraft = new Branch_14_Minecraft();
-        } else if (bukkitVersion.matches("1\\.15.*\\-R0\\.1.*")) {
+        } else if (bukkitVersion.matches("^1\\.15\\.[0-9]*")) {
             // 1.15
             branchPacket    = new Branch_15_Packet();
             branchNBT       = new Branch_15_NBT();
             branchMinecraft = new Branch_15_Minecraft();
-        } else if (bukkitVersion.matches("1\\.16.*\\-R0\\.1.*")) {
+        } else if (bukkitVersion.matches("^1\\.16\\.[0-9]*")) {
             // 1.16
             branchPacket    = new Branch_16_Packet();
             branchNBT       = new Branch_16_NBT();
             branchMinecraft = new Branch_16_Minecraft();
-        } else if (bukkitVersion.matches("1\\.17.*\\-R0\\.1.*")) {
+        } else if (bukkitVersion.matches("^1\\.17\\.[0-9]*")) {
             // 1.17
             branchPacket    = new Branch_17_Packet();
             branchNBT       = new Branch_17_NBT();
             branchMinecraft = new Branch_17_Minecraft();
-        } else if (bukkitVersion.matches("1\\.18.*\\-R0\\.1.*")) {
+        } else if (bukkitVersion.matches("^1\\.18\\.[0-9]*")) {
             // 1.18
             branchPacket    = new Branch_18_Packet();
             branchNBT       = new Branch_18_NBT();
             branchMinecraft = new Branch_18_Minecraft();
         } else {
-            throw new NullPointerException("Unsupported MC version");
+            throw new IllegalArgumentException("Unsupported MC version: " + bukkitVersion);
         }
 
         configData = new ConfigData(this, getConfig(), branchNBT);

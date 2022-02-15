@@ -58,12 +58,12 @@
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.17.1</artifactId>
-            <version>259</version>
+            <version>368</version>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.17.1</artifactId>
-            <version>259</version>
+            <version>368</version>
             <classifier>patched</classifier>
         </dependency>
     </dependencies>

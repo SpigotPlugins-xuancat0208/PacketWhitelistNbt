@@ -129,18 +129,18 @@
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.18</artifactId>
-            <version>11</version>
+            <version>42</version>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.18</artifactId>
-            <version>11</version>
+            <version>42</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
             <artifactId>1.18</artifactId>
-            <version>11</version>
+            <version>42</version>
             <classifier>mojangapi</classifier>
         </dependency>
     </dependencies>
