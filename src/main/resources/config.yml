@@ -32,3 +32,15 @@ item:
     - LodestoneDimension
     - LodestonePos.*
     - SkullOwner.*
+
+  # 不允許的標籤
+  #   會使用到此通常是
+  #     allowed-tag:
+  #       - *
+  #   如果同個標籤存在於允許和不允許, 則優先不允許
+  # Disallow Tags
+  #   Usually used from
+  #     allowed-tag:
+  #       - *
+  #   If the same tag exists for both allowed and disallowed, then the priority is disallowed
+  disallow-tag:

@@ -18,7 +18,8 @@ public final class ConfigData {
     private FileConfiguration fileConfiguration;
     private final JavaPlugin plugin;
     private final BranchNBT branchNBT;
-    private TagComparator itemTagComparator;
+    private TagComparator itemAllowedTagComparator;
+    private TagComparator itemDisallowTagComparator;
 
 
     public ConfigData(JavaPlugin plugin, FileConfiguration fileConfiguration, BranchNBT branchNBT) {
@@ -41,10 +42,13 @@ public final class ConfigData {
         if (itemConfiguration == null)
             throw new NullPointerException("config.yml->item");
         List<String> itemAllowedTagList = itemConfiguration.getStringList("allowed-tag");
-        TagComparator itemTagComparator = applyTagComparator(itemAllowedTagList);
+        List<String> itemDisallowTagList = itemConfiguration.getStringList("disallow-tag");
+        TagComparator itemAllowedTagComparator = applyTagComparator(itemAllowedTagList);
+        TagComparator itemDisallowTagComparator = applyTagComparator(itemDisallowTagList);
 
         // 正式替換
-        this.itemTagComparator = itemTagComparator;
+        this.itemAllowedTagComparator = itemAllowedTagComparator;
+        this.itemDisallowTagComparator = itemDisallowTagComparator;
     }
 
     public static TagComparator applyTagComparator(List<String> tagList) {
@@ -57,13 +61,13 @@ public final class ConfigData {
                 if (layer == length) {
                     // 最後一個
                     if (tag.equals("*")) {
-                        comparator.setAllowedAll(true);
+                        comparator.setHitAll(true);
                     } else {
-                        comparator.setAllowed(tag);
+                        comparator.setHit(tag);
                     }
                 } else {
                     // 中圖路徑
-                    comparator.setAllowed(tag);
+                    comparator.setHit(tag);
                     comparator = comparator.getLayerNotNull(tag);
                 }
             }
@@ -74,25 +78,25 @@ public final class ConfigData {
 
     /** 標籤比較器 */
     private static class TagComparator {
-        private final Set<String> allowedSet = new HashSet<>();
+        private final Set<String> hitSet = new HashSet<>();
         private final Map<String, TagComparator> layerMap = new HashMap<>();
-        private boolean allowedAll = false;
+        private boolean hitAll = false;
 
         public TagComparator() {
         }
 
-        public boolean isAllowed(String name) {
-            return allowedAll || allowedSet.contains(name);
+        public boolean isHit(String name) {
+            return hitAll || hitSet.contains(name);
         }
-        public void setAllowed(String name) {
-            allowedSet.add(name);
+        public void setHit(String name) {
+            hitSet.add(name);
         }
 
-        public void setAllowedAll(boolean allowedAll) {
-            this.allowedAll = allowedAll;
+        public void setHitAll(boolean allowedAll) {
+            this.hitAll = allowedAll;
         }
-        public boolean isAllowedAll() {
-            return allowedAll;
+        public boolean isHitAll() {
+            return hitAll;
         }
 
         public TagComparator getLayer(String name) {
@@ -100,13 +104,13 @@ public final class ConfigData {
         }
         public TagComparator getLayerNotNull(String name) {
             TagComparator child = layerMap.computeIfAbsent(name, key -> new TagComparator());
-            child.allowedAll |= allowedAll;
+            child.hitAll |= hitAll;
             return child;
         }
 
         @Override
         public String toString() {
-            return "{" + "allowedSet=" + allowedSet + ", layerMap=" + layerMap + ", allowedAll=" + allowedAll + '}';
+            return "{TagComparator " + "hitSet=" + hitSet + ", layerMap=" + layerMap + ", hitAll=" + hitAll + '}';
         }
     }
 
@@ -120,34 +124,37 @@ public final class ConfigData {
         closeItem.setString("id", sourceItem.getString("id"));
         closeItem.setInt("version", sourceItem.getInt("version"));
         BranchNBTCompound sourceTag = sourceItem.getCompound("tag");
-        BranchNBTCompound closeTag = filtrationTagComparatorMap(branchNBT, sourceTag, itemTagComparator);
+        BranchNBTCompound closeTag = filtrationTagComparatorMap(branchNBT, sourceTag, itemAllowedTagComparator, itemDisallowTagComparator);
         if (closeTag != null) {
             closeItem.setCompound("tag", closeTag);
         }
         return branchNBT.toItem(closeItem);
     }
-    private static BranchNBTCompound filtrationTagComparatorMap(BranchNBT branchNBT, BranchNBTCompound sourceMap, TagComparator comparator) {
-        return filtrationTagComparatorMap(branchNBT, sourceMap, comparator, comparator.allowedAll);
+    private static BranchNBTCompound filtrationTagComparatorMap(BranchNBT branchNBT, BranchNBTCompound sourceMap, TagComparator allowedComparator, TagComparator disallowComparator) {
+        return filtrationTagComparatorMap(branchNBT, sourceMap, allowedComparator, disallowComparator, allowedComparator.hitAll);
     }
-    private static BranchNBTCompound filtrationTagComparatorMap(BranchNBT branchNBT,BranchNBTCompound sourceMap, TagComparator comparator, boolean allowedAll) {
-        if (!allowedAll && comparator == null) {
+    private static BranchNBTCompound filtrationTagComparatorMap(BranchNBT branchNBT,BranchNBTCompound sourceMap, TagComparator allowedComparator, TagComparator disallowComparator, boolean allowedAll) {
+        if (!allowedAll && allowedComparator == null) {
             return null;
         }
-        if (comparator != null) {
-            allowedAll |= comparator.allowedAll;
+        if (allowedComparator != null) {
+            allowedAll |= allowedComparator.hitAll;
+        }
+        if (disallowComparator != null && disallowComparator.hitAll) {
+            return null;
         }
         BranchNBTCompound closeMap = branchNBT.createCompound();
         for (String tag : sourceMap.getKeys()) {
-            if (allowedAll || comparator.isAllowed(tag)) {
+            if ((disallowComparator == null || !disallowComparator.isHit(tag)) && (allowedAll || allowedComparator.isHit(tag))) {
                 switch (sourceMap.getType(tag)) {
                     case NBT_COMPOUND:
-                        BranchNBTCompound layerMap = filtrationTagComparatorMap(branchNBT, sourceMap.getCompound(tag), comparator != null ? comparator.getLayer(tag) : null, allowedAll);
+                        BranchNBTCompound layerMap = filtrationTagComparatorMap(branchNBT, sourceMap.getCompound(tag), allowedComparator != null ? allowedComparator.getLayer(tag) : null, disallowComparator != null ? disallowComparator.getLayer(tag) : null, allowedAll);
                         if (layerMap != null) {
                             closeMap.setCompound(tag, layerMap);
                         }
                         break;
                     case NBT_LIST:
-                        BranchNBTList cloneList = filtrationTagComparatorList(branchNBT, sourceMap.getList(tag), comparator != null ? comparator.getLayer(tag) : null, allowedAll);
+                        BranchNBTList cloneList = filtrationTagComparatorList(branchNBT, sourceMap.getList(tag), allowedComparator != null ? allowedComparator.getLayer(tag) : null, disallowComparator != null ? disallowComparator.getLayer(tag) : null, allowedAll);
                         if (cloneList != null) {
                             closeMap.setList(tag, cloneList);
                         }
@@ -160,19 +167,22 @@ public final class ConfigData {
         }
         return closeMap.size() == 0 ? null : closeMap;
     }
-    private static BranchNBTList filtrationTagComparatorList(BranchNBT branchNBT,BranchNBTList sourceList, TagComparator comparator, boolean allowedAll) {
-        if (!allowedAll && comparator == null) {
+    private static BranchNBTList filtrationTagComparatorList(BranchNBT branchNBT,BranchNBTList sourceList, TagComparator allowedComparator, TagComparator disallowComparator, boolean allowedAll) {
+        if (!allowedAll && allowedComparator == null) {
             return null;
         }
-        if (comparator != null) {
-            allowedAll |= comparator.allowedAll;
+        if (allowedComparator != null) {
+            allowedAll |= allowedComparator.hitAll;
+        }
+        if (disallowComparator != null && disallowComparator.hitAll) {
+            return null;
         }
         BranchNBTList closeList = branchNBT.createList();
-        if (allowedAll || comparator.isAllowed("[]")) {
+        if ((disallowComparator == null || !disallowComparator.isHit("[]")) && (allowedAll || allowedComparator.isHit("[]"))) {
             switch (sourceList.getOwnType()) {
                 case NBT_COMPOUND:
                     for (Object entry : sourceList) {
-                        BranchNBTCompound layerMap = filtrationTagComparatorMap(branchNBT, (BranchNBTCompound) entry, comparator != null ? comparator.getLayer("[]") : null, allowedAll);
+                        BranchNBTCompound layerMap = filtrationTagComparatorMap(branchNBT, (BranchNBTCompound) entry, allowedComparator != null ? allowedComparator.getLayer("[]") : null, disallowComparator != null ? disallowComparator.getLayer("[]") : null, allowedAll);
                         if (layerMap != null) {
                             closeList.add(layerMap);
                         }
@@ -180,7 +190,7 @@ public final class ConfigData {
                     break;
                 case NBT_LIST:
                     for (Object entry : sourceList) {
-                        BranchNBTList layerList = filtrationTagComparatorList(branchNBT, (BranchNBTList) entry, comparator != null ? comparator.getLayer("[]") : null, allowedAll);
+                        BranchNBTList layerList = filtrationTagComparatorList(branchNBT, (BranchNBTList) entry, allowedComparator != null ? allowedComparator.getLayer("[]") : null, disallowComparator != null ? disallowComparator.getLayer("[]") : null, allowedAll);
                         if (layerList != null) {
                             closeList.add(layerList);
                         }
