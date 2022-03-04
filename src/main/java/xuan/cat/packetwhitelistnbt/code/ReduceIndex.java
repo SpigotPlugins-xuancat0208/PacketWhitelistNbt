@@ -28,7 +28,7 @@ import xuan.cat.packetwhitelistnbt.code.command.Command;
 import xuan.cat.packetwhitelistnbt.code.command.CommandSuggest;
 import xuan.cat.packetwhitelistnbt.code.data.ConfigData;
 
-public final class Index extends JavaPlugin {
+public final class ReduceIndex extends JavaPlugin {
     private static ProtocolManager protocolManager;
     private static Plugin plugin;
     private static ReduceServer reduceServer;
@@ -77,7 +77,7 @@ public final class Index extends JavaPlugin {
         configData = new ConfigData(this, getConfig(), branchNBT);
         reduceServer = new ReduceServer(configData, this);
 
-        Bukkit.getPluginManager().registerEvents(new ReduceEvent(configData, reduceServer), this);
+        Bukkit.getPluginManager().registerEvents(new ReduceEvent(configData, reduceServer, branchPacket, branchMinecraft), this);
         protocolManager.addPacketListener(new ReducePacketEvent(plugin, configData, branchPacket, branchMinecraft));
 
         // 指令

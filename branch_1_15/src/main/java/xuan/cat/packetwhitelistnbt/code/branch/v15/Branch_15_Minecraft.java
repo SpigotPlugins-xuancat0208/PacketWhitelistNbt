@@ -1,5 +1,9 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v15;
 
+import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_15_R1.PlayerConnection;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 
@@ -66,5 +70,14 @@ public final class Branch_15_Minecraft implements BranchMinecraft {
         } else  {
             return recipeChoice;
         }
+    }
+
+    /**
+     * 參考 XuanCatAPI.ExtendPlayer#replacePlayerCode
+     */
+    public void injectPlayer(Player player) {
+        EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
+        PlayerConnection connection = entityPlayer.playerConnection;
+        entityPlayer.playerConnection = new Branch_15_ProxyPlayerConnection(connection, entityPlayer);
     }
 }

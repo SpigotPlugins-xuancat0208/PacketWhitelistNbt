@@ -6,7 +6,6 @@ import org.bukkit.craftbukkit.v1_14_R1.util.CraftNamespacedKey;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.*;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 

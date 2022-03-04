@@ -1,35 +1,35 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v17;
 
-import com.comphenix.protocol.events.PacketContainer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
+import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
 
 import java.util.function.Function;
 
 public final class Branch_17_Packet implements BranchPacket {
     @Override
-    public void convertSetSlot(PacketContainer container, Function<ItemStack, ItemStack> convert) {
+    public void convertSetSlot(PacketSetSlotEvent event, Function<ItemStack, ItemStack> convert) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void convertWindowItems(PacketContainer container, Function<ItemStack, ItemStack> convert) {
+    public void convertWindowItems(PacketWindowItemsEvent event, Function<ItemStack, ItemStack> convert) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void convertEntityEquipment(PacketContainer container, Function<ItemStack, ItemStack> convert) {
+    public void convertEntityEquipment(PacketEntityEquipmentEvent event, Function<ItemStack, ItemStack> convert) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void convertRecipeUpdate(PacketContainer container, Function<Recipe, Recipe> convert) {
+    public void convertRecipeUpdate(PacketRecipeUpdateEvent event, Function<Recipe, Recipe> convert) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void convertEntityMetadata(PacketContainer container, Function<ItemStack, ItemStack> convert) {
+    public void convertEntityMetadata(PacketEntityMetadataEvent event, Function<ItemStack, ItemStack> convert) {
         throw new UnsupportedOperationException();
     }
 }
