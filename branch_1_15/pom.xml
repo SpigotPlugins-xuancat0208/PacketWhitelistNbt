@@ -50,12 +50,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.6.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>paper</groupId>
             <artifactId>1.15.2</artifactId>
             <version>391</version>

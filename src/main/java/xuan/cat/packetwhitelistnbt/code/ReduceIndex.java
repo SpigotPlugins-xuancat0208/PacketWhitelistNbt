@@ -1,7 +1,5 @@
 package xuan.cat.packetwhitelistnbt.code;
 
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.Plugin;
@@ -29,7 +27,6 @@ import xuan.cat.packetwhitelistnbt.code.command.CommandSuggest;
 import xuan.cat.packetwhitelistnbt.code.data.ConfigData;
 
 public final class ReduceIndex extends JavaPlugin {
-    private static ProtocolManager protocolManager;
     private static Plugin plugin;
     private static ReduceServer reduceServer;
     private static ConfigData configData;
@@ -39,7 +36,6 @@ public final class ReduceIndex extends JavaPlugin {
 
     public void onEnable() {
         plugin = this;
-        protocolManager = ProtocolLibrary.getProtocolManager();
 
         saveDefaultConfig();
 
@@ -78,7 +74,6 @@ public final class ReduceIndex extends JavaPlugin {
         reduceServer = new ReduceServer(configData, this);
 
         Bukkit.getPluginManager().registerEvents(new ReduceEvent(configData, reduceServer, branchPacket, branchMinecraft), this);
-        protocolManager.addPacketListener(new ReducePacketEvent(plugin, configData, branchPacket, branchMinecraft));
 
         // 指令
         PluginCommand command = getCommand("whitelistnbt");
