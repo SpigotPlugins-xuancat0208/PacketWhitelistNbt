@@ -4,9 +4,11 @@ item:
   # 允許的標籤
   #   會轉換非創造模式玩家顯示的一切物品
   #   無允許的標籤不會發送給客戶端
+  #   - "*" 表示全部允許
   # Allowed Tags
   #   Converts all items displayed by non-creation mode players
   #   No allowed tags will be sent to the client
+  #   - "*" means all are allowed
   allowed-tag:
     - CustomModelData
     - Damage
@@ -34,13 +36,9 @@ item:
     - SkullOwner.*
 
   # 不允許的標籤
-  #   會使用到此通常是
-  #     allowed-tag:
-  #       - *
   #   如果同個標籤存在於允許和不允許, 則優先不允許
+  #   - "*" 表示全部不允許
   # Disallow Tags
-  #   Usually used from
-  #     allowed-tag:
-  #       - *
   #   If the same tag exists for both allowed and disallowed, then the priority is disallowed
+  #   - "*" means all are disallow
   disallow-tag:
