@@ -2,7 +2,7 @@ package xuan.cat.packetwhitelistnbt.code.branch.v18.packet;
 
 import net.minecraft.network.protocol.game.PacketPlayOutSetSlot;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 
