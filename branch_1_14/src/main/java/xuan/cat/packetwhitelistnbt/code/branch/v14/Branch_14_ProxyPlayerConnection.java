@@ -78,7 +78,7 @@ public final class Branch_14_ProxyPlayerConnection extends PlayerConnection {
 
     @Override
     public void a(PacketPlayInKeepAlive packetplayinkeepalive) {
-        super.a(packetplayinkeepalive);
+        connection.a(packetplayinkeepalive);
     }
 
     @Override

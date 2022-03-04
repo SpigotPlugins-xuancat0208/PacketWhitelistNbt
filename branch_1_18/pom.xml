@@ -121,19 +121,19 @@
         <!-- 1.18 paper -->
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18</artifactId>
-            <version>42</version>
+            <artifactId>1.18.2</artifactId>
+            <version>218</version>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18</artifactId>
-            <version>42</version>
+            <artifactId>1.18.2</artifactId>
+            <version>218</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18</artifactId>
-            <version>42</version>
+            <artifactId>1.18.2</artifactId>
+            <version>218</version>
             <classifier>mojangapi</classifier>
         </dependency>
     </dependencies>

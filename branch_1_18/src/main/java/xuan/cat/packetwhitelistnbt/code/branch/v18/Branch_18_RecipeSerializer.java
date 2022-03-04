@@ -2,8 +2,8 @@ package xuan.cat.packetwhitelistnbt.code.branch.v18;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.*;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.*;
-import org.bukkit.craftbukkit.v1_18_R1.util.CraftNamespacedKey;
+import org.bukkit.craftbukkit.v1_18_R2.inventory.*;
+import org.bukkit.craftbukkit.v1_18_R2.util.CraftNamespacedKey;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.*;
 

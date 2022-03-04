@@ -11,8 +11,8 @@ import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -87,7 +87,7 @@ public final class Branch_18_ProxyPlayerConnection extends PlayerConnection {
 
     @Override
     public void a(PacketPlayInKeepAlive packet) {
-        super.a(packet);
+        connection.a(packet);
     }
 
     @Override
@@ -356,13 +356,18 @@ public final class Branch_18_ProxyPlayerConnection extends PlayerConnection {
     }
 
     @Override
-    public EntityPlayer d() {
-        return super.d();
+    public boolean b() {
+        return connection.b();
     }
 
     @Override
-    public void b() {
-        super.b();
+    public void d() {
+        connection.d();
+    }
+
+    @Override
+    public EntityPlayer e() {
+        return connection.e();
     }
 
     @Override
