@@ -34,6 +34,7 @@ item:
     - LodestoneDimension
     - LodestonePos.*
     - SkullOwner.*
+    - Fireworks.*
     - RepairCost
 
   # 不允許的標籤
