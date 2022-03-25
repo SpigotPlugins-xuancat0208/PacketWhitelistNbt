@@ -36,6 +36,7 @@ item:
     - SkullOwner.*
     - Fireworks.*
     - RepairCost
+    - Items.*
 
   # 不允許的標籤
   #   如果同個標籤存在於允許和不允許, 則優先不允許

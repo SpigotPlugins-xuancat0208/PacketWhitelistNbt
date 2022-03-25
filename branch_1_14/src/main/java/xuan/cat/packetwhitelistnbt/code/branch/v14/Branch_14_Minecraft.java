@@ -1,6 +1,9 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v14;
 
+import io.netty.channel.*;
 import net.minecraft.server.v1_14_R1.EntityPlayer;
+import net.minecraft.server.v1_14_R1.NetworkManager;
+import net.minecraft.server.v1_14_R1.Packet;
 import net.minecraft.server.v1_14_R1.PlayerConnection;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -72,12 +75,31 @@ public final class Branch_14_Minecraft implements BranchMinecraft {
         }
     }
 
-    /**
-     * 參考 XuanCatAPI.ExtendPlayer#replacePlayerCode
-     */
     public void injectPlayer(Player player) {
-        EntityPlayer entityPlayer = ((CraftPlayer)player).getHandle();
+        EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         PlayerConnection connection = entityPlayer.playerConnection;
-        entityPlayer.playerConnection = new Branch_14_ProxyPlayerConnection(connection, entityPlayer);
+        NetworkManager networkManager = connection.networkManager;
+        Channel channel = networkManager.channel;
+        ChannelPipeline pipeline = channel.pipeline();
+        pipeline.addAfter("packet_handler", "packet_whitelist_nbt_write", new ChannelDuplexHandler() {
+            @Override
+            public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+                if (msg instanceof Packet) {
+                    if (!Branch_14_ProxyPlayerConnection.write(player, (Packet<?>) msg))
+                        return;
+                }
+                super.write(ctx, msg, promise);
+            }
+        });
+        pipeline.addAfter("encoder", "packet_whitelist_nbt_read", new ChannelInboundHandlerAdapter() {
+            @Override
+            public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                if (msg instanceof Packet) {
+                    if (!Branch_14_ProxyPlayerConnection.read(player, (Packet<?>) msg))
+                        return;
+                }
+                super.channelRead(ctx, msg);
+            }
+        });
     }
 }

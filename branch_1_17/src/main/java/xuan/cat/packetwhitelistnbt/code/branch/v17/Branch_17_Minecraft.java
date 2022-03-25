@@ -1,5 +1,8 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v17;
 
+import io.netty.channel.*;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
@@ -75,12 +78,31 @@ public final class Branch_17_Minecraft implements BranchMinecraft {
         }
     }
 
-    /**
-     * 參考 XuanCatAPI.ExtendPlayer#replacePlayerCode
-     */
     public void injectPlayer(Player player) {
         EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         PlayerConnection connection = entityPlayer.b;
-        entityPlayer.b = new Branch_17_ProxyPlayerConnection(connection, entityPlayer);
+        NetworkManager networkManager = connection.a;
+        Channel channel = networkManager.k;
+        ChannelPipeline pipeline = channel.pipeline();
+        pipeline.addAfter("packet_handler", "packet_whitelist_nbt_write", new ChannelDuplexHandler() {
+            @Override
+            public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+                if (msg instanceof Packet) {
+                    if (!Branch_17_ProxyPlayerConnection.write(player, (Packet<?>) msg))
+                        return;
+                }
+                super.write(ctx, msg, promise);
+            }
+        });
+        pipeline.addAfter("encoder", "packet_whitelist_nbt_read", new ChannelInboundHandlerAdapter() {
+            @Override
+            public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                if (msg instanceof Packet) {
+                    if (!Branch_17_ProxyPlayerConnection.read(player, (Packet<?>) msg))
+                        return;
+                }
+                super.channelRead(ctx, msg);
+            }
+        });
     }
 }
