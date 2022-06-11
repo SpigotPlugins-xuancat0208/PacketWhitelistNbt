@@ -1,15 +1,15 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18.packet;
+package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 
-public final class Branch_18_PacketSetSlot {
+public final class Branch_19_PacketSetSlot {
     private final ClientboundContainerSetSlotPacket packet;
 
-    public Branch_18_PacketSetSlot(ClientboundContainerSetSlotPacket packet) {
+    public Branch_19_PacketSetSlot(ClientboundContainerSetSlotPacket packet) {
         this.packet = packet;
     }
 

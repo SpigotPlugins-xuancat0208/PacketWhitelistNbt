@@ -1,4 +1,4 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18;
+package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
 
-public final class Branch_18_ProxyPlayerConnection {
+public final class Branch_19_ProxyPlayerConnection {
     public static boolean read(Player player, Packet<?> packet) {
         return true;
     }

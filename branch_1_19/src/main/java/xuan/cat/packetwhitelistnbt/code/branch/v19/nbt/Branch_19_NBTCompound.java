@@ -1,4 +1,4 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18.nbt;
+package xuan.cat.packetwhitelistnbt.code.branch.v19.nbt;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -9,14 +9,14 @@ import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTType;
 
 import java.util.Set;
 
-public final class Branch_18_NBTCompound implements BranchNBTCompound {
+public final class Branch_19_NBTCompound implements BranchNBTCompound {
     protected CompoundTag tag;
 
-    public Branch_18_NBTCompound() {
+    public Branch_19_NBTCompound() {
         this.tag = new CompoundTag();
     }
 
-    public Branch_18_NBTCompound(CompoundTag tag) {
+    public Branch_19_NBTCompound(CompoundTag tag) {
         this.tag = tag;
     }
 
@@ -26,7 +26,7 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     }
 
     public BranchNBTType getType(String key) {
-        return Branch_18_NBTType.fromNMS(tag.getTagType(key));
+        return Branch_19_NBTType.fromNMS(tag.getTagType(key));
     }
     
     public int size() {
@@ -36,9 +36,9 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     public Object get(String key) {
         Tag base = tag.get(key);
         if (base instanceof CompoundTag) {
-            return new Branch_18_NBTCompound((CompoundTag) base);
+            return new Branch_19_NBTCompound((CompoundTag) base);
         } else if (base instanceof ListTag) {
-            return new Branch_18_NBTList((ListTag) base);
+            return new Branch_19_NBTList((ListTag) base);
         } else {
             return base;
         }
@@ -59,7 +59,7 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
             tag.put(key, nbtTagCompound);
         }
 
-        return new Branch_18_NBTCompound(nbtTagCompound);
+        return new Branch_19_NBTCompound(nbtTagCompound);
     }
     
     public int getInt(String key) {
@@ -77,14 +77,14 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
             tag.put(key, ListTag);
         }
 
-        return new Branch_18_NBTList(ListTag);
+        return new Branch_19_NBTList(ListTag);
     }
 
     public void set(String key, Object value) {
-        if (value instanceof Branch_18_NBTCompound) {
-            tag.put(key, ((Branch_18_NBTCompound) value).getNMSTag());
-        } else if (value instanceof Branch_18_NBTList) {
-            tag.put(key, ((Branch_18_NBTList) value).getNMSTag());
+        if (value instanceof Branch_19_NBTCompound) {
+            tag.put(key, ((Branch_19_NBTCompound) value).getNMSTag());
+        } else if (value instanceof Branch_19_NBTList) {
+            tag.put(key, ((Branch_19_NBTList) value).getNMSTag());
         } else {
             tag.put(key, (Tag) value);
         }
@@ -95,7 +95,7 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     }
 
     public void setCompound(String key, BranchNBTCompound value) {
-        tag.put(key, ((Branch_18_NBTCompound) value).getNMSTag());
+        tag.put(key, ((Branch_19_NBTCompound) value).getNMSTag());
     }
 
     public void setInt(String key, int value) {
@@ -103,7 +103,7 @@ public final class Branch_18_NBTCompound implements BranchNBTCompound {
     }
 
     public void setList(String key, BranchNBTList value) {
-        tag.put(key, ((Branch_18_NBTList) value).getNMSTag());
+        tag.put(key, ((Branch_19_NBTList) value).getNMSTag());
     }
 
     public void setString(String key, String value) {

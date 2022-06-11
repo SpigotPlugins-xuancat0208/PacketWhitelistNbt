@@ -1,10 +1,10 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18;
+package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import io.netty.channel.*;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public final class Branch_18_Minecraft implements BranchMinecraft {
+public final class Branch_19_Minecraft implements BranchMinecraft {
     public Recipe filtrationRecipe(Recipe recipe, Function<ItemStack, ItemStack> convert) {
         if (recipe instanceof BlastingRecipe) {
             BlastingRecipe source = (BlastingRecipe) recipe;
@@ -92,7 +92,7 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
             @Override
             public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
                 if (msg instanceof Packet) {
-                    if (!Branch_18_ProxyPlayerConnection.write(player, (Packet<?>) msg))
+                    if (!Branch_19_ProxyPlayerConnection.write(player, (Packet<?>) msg))
                         return;
                 }
                 super.write(ctx, msg, promise);
@@ -102,7 +102,7 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
             @Override
             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                 if (msg instanceof Packet) {
-                    if (!Branch_18_ProxyPlayerConnection.read(player, (Packet<?>) msg))
+                    if (!Branch_19_ProxyPlayerConnection.read(player, (Packet<?>) msg))
                         return;
                 }
                 super.channelRead(ctx, msg);

@@ -1,18 +1,18 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18.packet;
+package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Branch_18_PacketWindowItems {
+public final class Branch_19_PacketWindowItems {
     private final ClientboundContainerSetContentPacket packet;
 
-    public Branch_18_PacketWindowItems(ClientboundContainerSetContentPacket packet) {
+    public Branch_19_PacketWindowItems(ClientboundContainerSetContentPacket packet) {
         this.packet = packet;
     }
 

@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>branch_1_18</groupId>
-    <artifactId>branch_1_18</artifactId>
+    <groupId>branch_1_19</groupId>
+    <artifactId>branch_1_19</artifactId>
     <version>r1</version>
 
     <properties>
@@ -38,9 +38,9 @@
                         </goals>
                         <id>remap-obf</id>
                         <configuration>
-                            <srgIn>remapped:1.18.2:R0.1:txt:maps-mojang</srgIn>
+                            <srgIn>remapped:1.19:R0.1:txt:maps-mojang</srgIn>
                             <reverse>true</reverse>
-                            <remappedDependencies>remapped:1.18.2:R0.1:jar:remapped-mojang</remappedDependencies>
+                            <remappedDependencies>remapped:1.19:R0.1:jar:remapped-mojang</remappedDependencies>
                             <remappedArtifactAttached>true</remappedArtifactAttached>
                             <remappedClassifierName>remapped-obf</remappedClassifierName>
                         </configuration>
@@ -53,8 +53,8 @@
                         <id>remap-spigot</id>
                         <configuration>
                             <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar</inputFile>
-                            <srgIn>remapped:1.18.2:R0.1:csrg:maps-spigot</srgIn>
-                            <remappedDependencies>remapped:1.18.2:R0.1:jar:remapped-obf</remappedDependencies>
+                            <srgIn>remapped:1.19:R0.1:csrg:maps-spigot</srgIn>
+                            <remappedDependencies>remapped:1.19:R0.1:jar:remapped-obf</remappedDependencies>
                         </configuration>
                     </execution>
                 </executions>
@@ -152,23 +152,23 @@
             <version>4.6.0</version>
         </dependency>
 
-        <!-- 1.18 paper -->
+        <!-- 1.19 paper -->
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18.2</artifactId>
-            <version>311</version>
+            <artifactId>1.19</artifactId>
+            <version>experimental-5</version>
             <classifier>mapped</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18.2</artifactId>
-            <version>311</version>
+            <artifactId>1.19</artifactId>
+            <version>experimental-5</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.18.2</artifactId>
-            <version>311</version>
+            <artifactId>1.19</artifactId>
+            <version>experimental-5</version>
             <classifier>mojangapi</classifier>
         </dependency>
     </dependencies>

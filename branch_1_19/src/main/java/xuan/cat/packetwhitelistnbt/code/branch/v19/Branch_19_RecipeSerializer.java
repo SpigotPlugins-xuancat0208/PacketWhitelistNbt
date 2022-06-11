@@ -1,9 +1,9 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18;
+package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.*;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.*;
-import org.bukkit.craftbukkit.v1_18_R2.util.CraftNamespacedKey;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.*;
+import org.bukkit.craftbukkit.v1_19_R1.util.CraftNamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 
@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
-public final class Branch_18_RecipeSerializer {
+public final class Branch_19_RecipeSerializer {
     private static Field field_CraftComplexRecipe_recipe;
     static {
         try {

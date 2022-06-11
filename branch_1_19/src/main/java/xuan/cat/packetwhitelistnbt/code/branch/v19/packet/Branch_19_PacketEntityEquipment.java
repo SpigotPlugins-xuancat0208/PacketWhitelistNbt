@@ -1,10 +1,10 @@
-package xuan.cat.packetwhitelistnbt.code.branch.v18.packet;
+package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_18_R2.CraftEquipmentSlot;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R1.CraftEquipmentSlot;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.lang.reflect.Field;
@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class Branch_18_PacketEntityEquipment {
+public final class Branch_19_PacketEntityEquipment {
     private final ClientboundSetEquipmentPacket packet;
 
-    public Branch_18_PacketEntityEquipment(ClientboundSetEquipmentPacket packet) {
+    public Branch_19_PacketEntityEquipment(ClientboundSetEquipmentPacket packet) {
         this.packet = packet;
     }
 
