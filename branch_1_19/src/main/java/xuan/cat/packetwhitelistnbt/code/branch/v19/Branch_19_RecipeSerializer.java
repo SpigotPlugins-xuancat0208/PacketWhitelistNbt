@@ -66,7 +66,13 @@ public final class Branch_19_RecipeSerializer {
 
         } else if (recipe instanceof org.bukkit.inventory.SmithingRecipe) {
             CraftSmithingRecipe craftRecipe = CraftSmithingRecipe.fromBukkitRecipe((org.bukkit.inventory.SmithingRecipe) recipe);
-            return new UpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
+            try {
+                // 適用於 paper
+                return new UpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
+            } catch (NoSuchMethodError noSuchMethodError) {
+                // 適用於 spigot (不推薦)
+                return new UpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+            }
 
         } else if (recipe instanceof org.bukkit.inventory.SmokingRecipe) {
             CraftSmokingRecipe craftRecipe = CraftSmokingRecipe.fromBukkitRecipe((org.bukkit.inventory.SmokingRecipe) recipe);
