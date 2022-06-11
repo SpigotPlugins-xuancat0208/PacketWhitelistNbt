@@ -88,7 +88,7 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
         ServerGamePacketListenerImpl connection = entityPlayer.connection;
         Channel channel = connection.connection.channel;
         ChannelPipeline pipeline = channel.pipeline();
-        pipeline.addAfter("packet_handler", "farther_view_distance_write", new ChannelDuplexHandler() {
+        pipeline.addAfter("packet_handler", "packet_whitelist_nbt_write", new ChannelDuplexHandler() {
             @Override
             public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
                 if (msg instanceof Packet) {
@@ -98,7 +98,7 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
                 super.write(ctx, msg, promise);
             }
         });
-        pipeline.addAfter("encoder", "farther_view_distance_read", new ChannelInboundHandlerAdapter() {
+        pipeline.addAfter("encoder", "packet_whitelist_nbt_read", new ChannelInboundHandlerAdapter() {
             @Override
             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                 if (msg instanceof Packet) {
