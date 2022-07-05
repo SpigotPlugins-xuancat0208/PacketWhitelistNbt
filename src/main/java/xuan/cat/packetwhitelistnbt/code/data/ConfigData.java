@@ -51,7 +51,7 @@ public final class ConfigData {
         ConfigurationSection permissionsConfiguration = fileConfiguration.getConfigurationSection("permissions");
         if (permissionsConfiguration == null)
             throw new NullPointerException("config.yml->permissions");
-        ConfigurationSection permissionsNodeConfiguration = permissionsConfiguration.getConfigurationSection("permissions");
+        ConfigurationSection permissionsNodeConfiguration = permissionsConfiguration.getConfigurationSection("node");
         if (permissionsNodeConfiguration == null)
             throw new NullPointerException("config.yml->permissions->node");
         String permissionsNode_ignoreItemTagLimit = permissionsNodeConfiguration.getString("ignore-item-tag-limit", "packetwhitelist.ignore_item_allowed_tag");
