@@ -6,4 +6,4 @@ authors: [xuancat0208]
 
 commands:
   whitelistnbt:
-    usage: true
+    usage: op
