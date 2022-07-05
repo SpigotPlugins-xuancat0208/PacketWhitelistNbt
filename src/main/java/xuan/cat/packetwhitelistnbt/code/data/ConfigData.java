@@ -20,6 +20,8 @@ public final class ConfigData {
     private final BranchNBT branchNBT;
     private TagComparator itemAllowedTagComparator;
     private TagComparator itemDisallowTagComparator;
+    public String permissionsNode_ignoreItemTagLimit;
+    public long permissionsPeriodicMillisecondCheck;
 
 
     public ConfigData(JavaPlugin plugin, FileConfiguration fileConfiguration, BranchNBT branchNBT) {
@@ -46,10 +48,22 @@ public final class ConfigData {
         TagComparator itemAllowedTagComparator = applyTagComparator(itemAllowedTagList);
         TagComparator itemDisallowTagComparator = applyTagComparator(itemDisallowTagList);
 
+        ConfigurationSection permissionsConfiguration = fileConfiguration.getConfigurationSection("permissions");
+        if (permissionsConfiguration == null)
+            throw new NullPointerException("config.yml->permissions");
+        ConfigurationSection permissionsNodeConfiguration = permissionsConfiguration.getConfigurationSection("permissions");
+        if (permissionsNodeConfiguration == null)
+            throw new NullPointerException("config.yml->permissions->node");
+        String permissionsNode_ignoreItemTagLimit = permissionsNodeConfiguration.getString("ignore-item-tag-limit", "packetwhitelist.ignore_item_allowed_tag");
+        long permissionsPeriodicMillisecondCheck = permissionsConfiguration.getLong("periodic-millisecond-check", 60000L);
+
         // 正式替換
         this.itemAllowedTagComparator = itemAllowedTagComparator;
         this.itemDisallowTagComparator = itemDisallowTagComparator;
+        this.permissionsNode_ignoreItemTagLimit = permissionsNode_ignoreItemTagLimit;
+        this.permissionsPeriodicMillisecondCheck = permissionsPeriodicMillisecondCheck;
     }
+
 
     public static TagComparator applyTagComparator(List<String> tagList) {
         TagComparator comparatorRoot = new TagComparator();

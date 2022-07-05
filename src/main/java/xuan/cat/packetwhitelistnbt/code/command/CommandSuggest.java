@@ -1,5 +1,6 @@
 package xuan.cat.packetwhitelistnbt.code.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -20,6 +21,13 @@ public final class CommandSuggest implements TabCompleter {
 
         if (parameters.length == 1) {
             list.add("reload");
+            list.add("permissionCheck");
+        } else if (parameters.length == 2) {
+            switch (parameters[0]) {
+                case "permissionCheck":
+                    Bukkit.getOnlinePlayers().forEach(player -> list.add(player.getName()));
+                    break;
+            }
         }
 
         return list;

@@ -22,7 +22,7 @@ public final class Command implements CommandExecutor {
             // 無權限
             sender.sendMessage(ChatColor.RED + "No permission");
         } else {
-            if (parameters.length != 1 || parameters[0] == null) {
+            if (parameters.length < 1) {
                 // 缺少參數
                 sender.sendMessage(ChatColor.RED + "Missing parameters");
             } else {
@@ -39,6 +39,23 @@ public final class Command implements CommandExecutor {
                             ex.printStackTrace();
                             // 重讀配置錯誤
                             sender.sendMessage(ChatColor.RED + "Reread configuration error");
+                        }
+                        break;
+                    case "permissionCheck":
+                        // 檢查玩家權限
+                        if (parameters.length < 2) {
+                            // 缺少參數
+                            sender.sendMessage(ChatColor.RED + "Missing parameters");
+                        } else {
+                            Player player = Bukkit.getPlayer(parameters[1]);
+                            if (player == null) {
+                                // 玩家不存在
+                                sender.sendMessage(ChatColor.RED + "Player does not exist");
+                            } else {
+                                reduceServer.getPermissions(player).permissionsNeed = true;
+                                // 已重新檢查玩家權限
+                                sender.sendMessage(ChatColor.YELLOW + "Rechecked player permissions");
+                            }
                         }
                         break;
                     default:

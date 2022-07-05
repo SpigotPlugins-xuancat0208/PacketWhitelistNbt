@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
@@ -34,6 +35,14 @@ public final class ReduceEvent implements Listener {
         // 注入代碼
         branchMinecraft.injectPlayer(event.getPlayer());
     }
+    /**
+     * @param event 玩家登出
+     */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void on(PlayerQuitEvent event) {
+        reduceServer.clearPermissions(event.getPlayer());
+    }
+
 
     /**
      * @param event 玩家切換遊戲模式
@@ -55,7 +64,7 @@ public final class ReduceEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void on(PacketEntityEquipmentEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
+        if (reduceServer.getPermissions(player).ignoreItemTagLimit)
             return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             branchPacket.convertEntityEquipment(event, configData::filtrationItem);
@@ -67,7 +76,7 @@ public final class ReduceEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void on(PacketEntityMetadataEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
+        if (reduceServer.getPermissions(player).ignoreItemTagLimit)
             return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             branchPacket.convertEntityMetadata(event, configData::filtrationItem);
@@ -79,7 +88,7 @@ public final class ReduceEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void on(PacketRecipeUpdateEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
+        if (reduceServer.getPermissions(player).ignoreItemTagLimit)
             return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             branchPacket.convertRecipeUpdate(event, recipe -> branchMinecraft.filtrationRecipe(recipe, configData::filtrationItem));
@@ -91,7 +100,7 @@ public final class ReduceEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void on(PacketSetSlotEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
+        if (reduceServer.getPermissions(player).ignoreItemTagLimit)
             return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             branchPacket.convertSetSlot(event, configData::filtrationItem);
@@ -103,7 +112,7 @@ public final class ReduceEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void on(PacketWindowItemsEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("packetwhitelist.ignore_item_allowed_tag"))
+        if (reduceServer.getPermissions(player).ignoreItemTagLimit)
             return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             branchPacket.convertWindowItems(event, configData::filtrationItem);
