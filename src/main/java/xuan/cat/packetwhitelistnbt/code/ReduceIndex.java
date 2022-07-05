@@ -104,6 +104,8 @@ public final class ReduceIndex extends JavaPlugin {
     }
 
     public void onDisable() {
-        reduceServer.close();
+        if (reduceServer != null) {
+            reduceServer.close();
+        }
     }
 }
