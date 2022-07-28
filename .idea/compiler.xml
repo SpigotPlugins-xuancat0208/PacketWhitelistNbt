@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="branch_1_19" />
         <module name="branch_1_18" />
         <module name="branch_1_17" />
         <module name="branch_1_16" />
         <module name="PacketWhitelistNbt" />
         <module name="branch_1_15" />
         <module name="branch_1_14" />
+        <module name="branch_1_19_a" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

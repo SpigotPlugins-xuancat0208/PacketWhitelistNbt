@@ -152,23 +152,23 @@
             <version>4.6.0</version>
         </dependency>
 
-        <!-- 1.19 paper -->
+        <!-- 1.19.1 -->
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19</artifactId>
-            <version>experimental-5</version>
+            <artifactId>1.19.1</artifactId>
+            <version>85</version>
             <classifier>mapped</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19</artifactId>
-            <version>experimental-5</version>
+            <artifactId>1.19.1</artifactId>
+            <version>85</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>
             <groupId>paper</groupId>
-            <artifactId>1.19</artifactId>
-            <version>experimental-5</version>
+            <artifactId>1.19.1</artifactId>
+            <version>85</version>
             <classifier>mojangapi</classifier>
         </dependency>
     </dependencies>
