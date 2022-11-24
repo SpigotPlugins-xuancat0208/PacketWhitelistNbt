@@ -5,10 +5,7 @@ import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.Recipe;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
-import xuan.cat.packetwhitelistnbt.code.branch.v14.packet.Branch_14_PacketEntityEquipment;
-import xuan.cat.packetwhitelistnbt.code.branch.v14.packet.Branch_14_PacketRecipeUpdate;
-import xuan.cat.packetwhitelistnbt.code.branch.v14.packet.Branch_14_PacketSetSlot;
-import xuan.cat.packetwhitelistnbt.code.branch.v14.packet.Branch_14_PacketWindowItems;
+import xuan.cat.packetwhitelistnbt.code.branch.v14.packet.*;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,6 +25,14 @@ public final class Branch_14_Packet implements BranchPacket {
         List<org.bukkit.inventory.ItemStack> list = new ArrayList<>();
         packet.getItemList().forEach((item) -> list.add(convert.apply(item)));
         packet.setItemList(list);
+    }
+
+    @Override
+    public void convertWindowMerchants(PacketOpenWindowMerchantEvent event, Function<org.bukkit.inventory.MerchantRecipe, org.bukkit.inventory.MerchantRecipe> convert) {
+        Branch_14_PacketOpenWindowMerchant packet = new Branch_14_PacketOpenWindowMerchant((PacketPlayOutOpenWindowMerchant) event.getPacket());
+        List<org.bukkit.inventory.MerchantRecipe> list = new ArrayList<>();
+        packet.getRecipeList().forEach((item) -> list.add(convert.apply(item)));
+        packet.setRecipeList(list);
     }
 
     @Override

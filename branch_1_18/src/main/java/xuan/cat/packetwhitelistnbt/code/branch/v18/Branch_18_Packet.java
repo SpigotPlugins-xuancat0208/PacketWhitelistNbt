@@ -6,13 +6,11 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.Recipe;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
-import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketEntityEquipment;
-import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketRecipeUpdate;
-import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketSetSlot;
-import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.Branch_18_PacketWindowItems;
+import xuan.cat.packetwhitelistnbt.code.branch.v18.packet.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +31,14 @@ public final class Branch_18_Packet implements BranchPacket {
         List<org.bukkit.inventory.ItemStack> list = new ArrayList<>();
         packet.getItemList().forEach((item) -> list.add(convert.apply(item)));
         packet.setItemList(list);
+    }
+
+    @Override
+    public void convertWindowMerchants(PacketOpenWindowMerchantEvent event, Function<MerchantRecipe, MerchantRecipe> convert) {
+        Branch_18_PacketOpenWindowMerchant packet = new Branch_18_PacketOpenWindowMerchant((ClientboundMerchantOffersPacket) event.getPacket());
+        List<MerchantRecipe> list = new ArrayList<>();
+        packet.getRecipeList().forEach((item) -> list.add(convert.apply(item)));
+        packet.setRecipeList(list);
     }
 
     @Override

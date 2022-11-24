@@ -131,7 +131,7 @@ public final class ConfigData {
 
     public ItemStack filtrationItem(ItemStack item) {
         if (item == null || item.getType() == Material.AIR)
-            return null;
+            return new ItemStack(Material.AIR);
         BranchNBTCompound sourceItem = branchNBT.fromItem(item);
         BranchNBTCompound closeItem = branchNBT.createCompound();
         closeItem.setByte("Count", sourceItem.getByte("Count"));

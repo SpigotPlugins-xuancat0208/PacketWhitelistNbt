@@ -1,6 +1,7 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v18;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.Recipe;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
@@ -15,6 +16,11 @@ public final class Branch_18_Packet implements BranchPacket {
 
     @Override
     public void convertWindowItems(PacketWindowItemsEvent event, Function<ItemStack, ItemStack> convert) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void convertWindowMerchants(PacketOpenWindowMerchantEvent event, Function<MerchantRecipe, MerchantRecipe> convert) {
         throw new UnsupportedOperationException();
     }
 

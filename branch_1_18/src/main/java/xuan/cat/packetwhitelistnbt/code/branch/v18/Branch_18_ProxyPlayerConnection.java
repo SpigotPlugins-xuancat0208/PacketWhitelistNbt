@@ -34,6 +34,10 @@ public final class Branch_18_ProxyPlayerConnection {
                 PacketEntityMetadataEvent event = new PacketEntityMetadataEvent(player, packet);
                 Bukkit.getPluginManager().callEvent(event);
                 return !event.isCancelled();
+            } else if (packet instanceof ClientboundMerchantOffersPacket) {
+                PacketOpenWindowMerchantEvent event = new PacketOpenWindowMerchantEvent(player, packet);
+                Bukkit.getPluginManager().callEvent(event);
+                return !event.isCancelled();
             } else {
                 return true;
             }
