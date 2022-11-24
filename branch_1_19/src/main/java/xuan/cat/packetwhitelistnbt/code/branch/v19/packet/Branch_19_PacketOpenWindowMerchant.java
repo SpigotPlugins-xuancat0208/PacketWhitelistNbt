@@ -1,11 +1,7 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
 import net.minecraft.network.protocol.game.ClientboundMerchantOffersPacket;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffers;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftMerchantRecipe;
 import org.bukkit.inventory.MerchantRecipe;
 

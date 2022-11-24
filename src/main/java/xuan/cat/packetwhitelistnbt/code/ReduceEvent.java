@@ -10,14 +10,10 @@ import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.MerchantRecipe;
-import org.bukkit.inventory.Recipe;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
 import xuan.cat.packetwhitelistnbt.code.data.ConfigData;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class ReduceEvent implements Listener {
     private final ConfigData configData;
