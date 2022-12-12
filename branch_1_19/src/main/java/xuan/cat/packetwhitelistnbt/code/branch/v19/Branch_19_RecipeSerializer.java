@@ -2,8 +2,8 @@ package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.*;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.*;
-import org.bukkit.craftbukkit.v1_19_R1.util.CraftNamespacedKey;
+import org.bukkit.craftbukkit.v1_19_R2.inventory.*;
+import org.bukkit.craftbukkit.v1_19_R2.util.CraftNamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 
@@ -24,11 +24,11 @@ public final class Branch_19_RecipeSerializer {
     public static net.minecraft.world.item.crafting.Recipe fromBukkit(Recipe recipe) {
         if (recipe instanceof org.bukkit.inventory.BlastingRecipe) {
             CraftBlastingRecipe craftRecipe = CraftBlastingRecipe.fromBukkitRecipe((org.bukkit.inventory.BlastingRecipe) recipe);
-            return new net.minecraft.world.item.crafting.BlastingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
+            return new net.minecraft.world.item.crafting.BlastingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
 
         } else if (recipe instanceof org.bukkit.inventory.CampfireRecipe) {
             CraftCampfireRecipe craftRecipe = CraftCampfireRecipe.fromBukkitRecipe((org.bukkit.inventory.CampfireRecipe) recipe);
-            return new CampfireCookingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
+            return new CampfireCookingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
 
         } else if (recipe instanceof org.bukkit.inventory.ComplexRecipe) {
             try {
@@ -39,7 +39,7 @@ public final class Branch_19_RecipeSerializer {
 
         } else if (recipe instanceof org.bukkit.inventory.FurnaceRecipe) {
             CraftFurnaceRecipe craftRecipe = CraftFurnaceRecipe.fromBukkitRecipe((org.bukkit.inventory.FurnaceRecipe) recipe);
-            return new SmeltingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
+            return new SmeltingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
 
         } else if (recipe instanceof org.bukkit.inventory.ShapedRecipe) {
             CraftShapedRecipe craftRecipe = CraftShapedRecipe.fromBukkitRecipe((org.bukkit.inventory.ShapedRecipe) recipe);
@@ -53,7 +53,7 @@ public final class Branch_19_RecipeSerializer {
                     data.set(column * width + row, craftRecipe.toNMS(choiceMap.get(shape.charAt(row)), false));
                 }
             }
-            return new ShapedRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), width, shapeList.length, data, CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+            return new ShapedRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), width, shapeList.length, data, CraftItemStack.asNMSCopy(craftRecipe.getResult()));
 
         } else if (recipe instanceof org.bukkit.inventory.ShapelessRecipe) {
             CraftShapelessRecipe craftRecipe = CraftShapelessRecipe.fromBukkitRecipe((org.bukkit.inventory.ShapelessRecipe) recipe);
@@ -62,7 +62,7 @@ public final class Branch_19_RecipeSerializer {
             for(int i = 0; i < choiceList.size(); ++i) {
                 data.set(i, craftRecipe.toNMS(choiceList.get(i), true));
             }
-            return new ShapelessRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftItemStack.asNMSCopy(craftRecipe.getResult()), data);
+            return new ShapelessRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), CraftItemStack.asNMSCopy(craftRecipe.getResult()), data);
 
         } else if (recipe instanceof org.bukkit.inventory.SmithingRecipe) {
             CraftSmithingRecipe craftRecipe = CraftSmithingRecipe.fromBukkitRecipe((org.bukkit.inventory.SmithingRecipe) recipe);
@@ -76,7 +76,7 @@ public final class Branch_19_RecipeSerializer {
 
         } else if (recipe instanceof org.bukkit.inventory.SmokingRecipe) {
             CraftSmokingRecipe craftRecipe = CraftSmokingRecipe.fromBukkitRecipe((org.bukkit.inventory.SmokingRecipe) recipe);
-            return new SmokingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
+            return new SmokingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
 
         } else if (recipe instanceof org.bukkit.inventory.StonecuttingRecipe) {
             CraftStonecuttingRecipe craftRecipe = CraftStonecuttingRecipe.fromBukkitRecipe((org.bukkit.inventory.StonecuttingRecipe) recipe);

@@ -2,7 +2,7 @@ package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 

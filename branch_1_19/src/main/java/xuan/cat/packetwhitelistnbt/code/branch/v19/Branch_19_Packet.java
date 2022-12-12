@@ -4,7 +4,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.Recipe;
@@ -12,6 +12,7 @@ import xuan.cat.packetwhitelistnbt.api.branch.BranchPacket;
 import xuan.cat.packetwhitelistnbt.api.branch.packet.*;
 import xuan.cat.packetwhitelistnbt.code.branch.v19.packet.*;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,13 +58,26 @@ public final class Branch_19_Packet implements BranchPacket {
         packet.setRecipeList(list);
     }
 
+    private static Field field_DataValue_value;
+    static {
+        try {
+            field_DataValue_value = SynchedEntityData.DataValue.class.getDeclaredField("c"); // value
+            field_DataValue_value.setAccessible(true);
+        } catch (NoSuchFieldException ex) {
+            ex.printStackTrace();
+        }
+    }
     @Override
     public void convertEntityMetadata(PacketEntityMetadataEvent event, Function<org.bukkit.inventory.ItemStack, org.bukkit.inventory.ItemStack> convert) {
         ClientboundSetEntityDataPacket packet = (ClientboundSetEntityDataPacket) event.getPacket();
-        packet.getUnpackedData().forEach(entry -> {
-            if (entry.getAccessor().getSerializer() == EntityDataSerializers.ITEM_STACK) {
-                SynchedEntityData.DataItem<ItemStack> dataWatcher = (SynchedEntityData.DataItem<ItemStack>) entry;
-                dataWatcher.setValue(CraftItemStack.asNMSCopy(convert.apply(CraftItemStack.asBukkitCopy(dataWatcher.getValue()))));
+        packet.packedItems().forEach(entry -> {
+            if (entry.serializer() == EntityDataSerializers.ITEM_STACK) {
+                SynchedEntityData.DataValue<ItemStack> dataWatcher = (SynchedEntityData.DataValue<ItemStack>) entry;
+                try {
+                    field_DataValue_value.set(dataWatcher, CraftItemStack.asNMSCopy(convert.apply(CraftItemStack.asBukkitCopy(dataWatcher.value()))));
+                } catch (IllegalAccessException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
