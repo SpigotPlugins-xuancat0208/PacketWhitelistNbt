@@ -2,8 +2,8 @@ package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.*;
-import org.bukkit.craftbukkit.v1_19_R2.inventory.*;
-import org.bukkit.craftbukkit.v1_19_R2.util.CraftNamespacedKey;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.*;
+import org.bukkit.craftbukkit.v1_19_R3.util.CraftNamespacedKey;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 
@@ -29,13 +29,6 @@ public final class Branch_19_RecipeSerializer {
         } else if (recipe instanceof org.bukkit.inventory.CampfireRecipe) {
             CraftCampfireRecipe craftRecipe = CraftCampfireRecipe.fromBukkitRecipe((org.bukkit.inventory.CampfireRecipe) recipe);
             return new CampfireCookingRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.getExperience(), craftRecipe.getCookingTime());
-
-        } else if (recipe instanceof org.bukkit.inventory.ComplexRecipe) {
-            try {
-                return (CustomRecipe) field_CraftComplexRecipe_recipe.get(recipe);
-            } catch (IllegalAccessException ex) {
-                ex.printStackTrace();
-            }
 
         } else if (recipe instanceof org.bukkit.inventory.FurnaceRecipe) {
             CraftFurnaceRecipe craftRecipe = CraftFurnaceRecipe.fromBukkitRecipe((org.bukkit.inventory.FurnaceRecipe) recipe);
@@ -64,14 +57,22 @@ public final class Branch_19_RecipeSerializer {
             }
             return new ShapelessRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), CraftRecipe.getCategory(craftRecipe.getCategory()), CraftItemStack.asNMSCopy(craftRecipe.getResult()), data);
 
+        } else if (recipe instanceof org.bukkit.inventory.SmithingTrimRecipe) {
+            CraftSmithingTrimRecipe craftRecipe = CraftSmithingTrimRecipe.fromBukkitRecipe((org.bukkit.inventory.SmithingTrimRecipe) recipe);
+            return new SmithingTrimRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getTemplate(), true), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true));
+
+        } else if (recipe instanceof org.bukkit.inventory.SmithingTransformRecipe) {
+            CraftSmithingTransformRecipe craftRecipe = CraftSmithingTransformRecipe.fromBukkitRecipe((org.bukkit.inventory.SmithingTransformRecipe) recipe);
+            return new SmithingTransformRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getTemplate(), true), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+
         } else if (recipe instanceof org.bukkit.inventory.SmithingRecipe) {
             CraftSmithingRecipe craftRecipe = CraftSmithingRecipe.fromBukkitRecipe((org.bukkit.inventory.SmithingRecipe) recipe);
             try {
                 // 適用於 paper
-                return new UpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
+                return new LegacyUpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()), craftRecipe.willCopyNbt());
             } catch (NoSuchMethodError noSuchMethodError) {
                 // 適用於 spigot (不推薦)
-                return new UpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+                return new LegacyUpgradeRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.toNMS(craftRecipe.getBase(), true), craftRecipe.toNMS(craftRecipe.getAddition(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
             }
 
         } else if (recipe instanceof org.bukkit.inventory.SmokingRecipe) {
@@ -81,6 +82,13 @@ public final class Branch_19_RecipeSerializer {
         } else if (recipe instanceof org.bukkit.inventory.StonecuttingRecipe) {
             CraftStonecuttingRecipe craftRecipe = CraftStonecuttingRecipe.fromBukkitRecipe((org.bukkit.inventory.StonecuttingRecipe) recipe);
             return new StonecutterRecipe(CraftNamespacedKey.toMinecraft(craftRecipe.getKey()), craftRecipe.getGroup(), craftRecipe.toNMS(craftRecipe.getInputChoice(), true), CraftItemStack.asNMSCopy(craftRecipe.getResult()));
+
+        } else if (recipe instanceof org.bukkit.inventory.ComplexRecipe) {
+            try {
+                return (CustomRecipe) field_CraftComplexRecipe_recipe.get(recipe);
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            }
         }
         try {
             throw new IllegalArgumentException("Recipe miss: " + recipe.getClass());

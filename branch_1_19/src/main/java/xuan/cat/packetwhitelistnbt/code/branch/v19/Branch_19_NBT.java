@@ -1,8 +1,8 @@
 package xuan.cat.packetwhitelistnbt.code.branch.v19;
 
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_19_R2.util.CraftMagicNumbers;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R3.util.CraftMagicNumbers;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchNBT;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTCompound;
 import xuan.cat.packetwhitelistnbt.api.branch.nbt.BranchNBTList;

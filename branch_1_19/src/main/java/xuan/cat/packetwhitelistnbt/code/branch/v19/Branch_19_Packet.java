@@ -4,7 +4,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.Recipe;

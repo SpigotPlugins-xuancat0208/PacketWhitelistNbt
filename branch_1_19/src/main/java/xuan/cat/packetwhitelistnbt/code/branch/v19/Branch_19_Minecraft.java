@@ -4,7 +4,7 @@ import io.netty.channel.*;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import xuan.cat.packetwhitelistnbt.api.branch.BranchMinecraft;

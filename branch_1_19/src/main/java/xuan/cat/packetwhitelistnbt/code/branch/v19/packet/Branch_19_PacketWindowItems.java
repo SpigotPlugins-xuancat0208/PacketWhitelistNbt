@@ -3,7 +3,7 @@ package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

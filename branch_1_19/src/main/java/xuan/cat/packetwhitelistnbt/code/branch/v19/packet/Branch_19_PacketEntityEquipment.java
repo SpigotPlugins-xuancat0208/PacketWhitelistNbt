@@ -3,8 +3,8 @@ package xuan.cat.packetwhitelistnbt.code.branch.v19.packet;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_19_R2.CraftEquipmentSlot;
-import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R3.CraftEquipmentSlot;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.lang.reflect.Field;
