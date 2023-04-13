@@ -16,12 +16,11 @@ public final class Branch_17_PacketRecipeUpdate {
         this.packet = packet;
     }
 
-
-    private static Field field_ClientboundUpdateRecipesPacket_recipes;
+    private static Field field_recipes;
     static {
         try {
-            field_ClientboundUpdateRecipesPacket_recipes = PacketPlayOutRecipeUpdate.class.getDeclaredField("a"); // TODO 映射 recipes
-            field_ClientboundUpdateRecipesPacket_recipes.setAccessible(true);
+            field_recipes = PacketPlayOutRecipeUpdate.class.getDeclaredField("a"); // TODO 映射 recipes
+            field_recipes.setAccessible(true);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -35,7 +34,7 @@ public final class Branch_17_PacketRecipeUpdate {
         List<IRecipe<?>> list = new ArrayList<>();
         recipeList.forEach(recipe -> list.add(Branch_17_RecipeSerializer.fromBukkit(recipe)));
         try {
-            field_ClientboundUpdateRecipesPacket_recipes.set(packet, list);
+            field_recipes.set(packet, list);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

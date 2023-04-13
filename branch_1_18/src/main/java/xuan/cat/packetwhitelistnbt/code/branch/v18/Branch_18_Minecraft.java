@@ -29,7 +29,7 @@ public final class Branch_18_Minecraft implements BranchMinecraft {
 
         } else if (recipe instanceof MerchantRecipe) {
             MerchantRecipe source = (MerchantRecipe) recipe;
-            MerchantRecipe clone = new MerchantRecipe(convert.apply(source.getResult()), source.getUses(), source.getMaxUses(), source.hasExperienceReward(), source.getVillagerExperience(), source.getPriceMultiplier(), source.shouldIgnoreDiscounts());
+            MerchantRecipe clone = new MerchantRecipe(convert.apply(source.getResult()), source.getUses(), source.getMaxUses(), source.hasExperienceReward(), source.getVillagerExperience(), source.getPriceMultiplier(), source.getDemand(), source.getSpecialPrice(), source.shouldIgnoreDiscounts());
             List<ItemStack> ingredientList = new ArrayList<>();
             source.getIngredients().forEach(ingredient -> ingredientList.add(convert.apply(ingredient)));
             clone.setIngredients(ingredientList);

@@ -23,23 +23,38 @@ item:
     - BlockEntityTag.Items.[].Count
     - BlockEntityTag.Items.[].Slot
     - BlockEntityTag.Items.[].id
+    - BlockEntityTag.Items.[].Base
+    - BlockEntityTag.Items.[].tag.CustomModelData
+    - BlockEntityTag.Items.[].tag.HideFlags
+    - BlockEntityTag.Items.[].tag.Enchantments.*
+    - BlockEntityTag.Items.[].tag.StoredEnchantments.*
     - BlockEntityTag.Items.[].tag.display.*
+    - BlockEntityTag.Items.[].tag.BlockEntityTag.Patterns.*
+    - BlockEntityTag.Items.[].tag.Potion
+    - BlockEntityTag.Items.[].tag.CustomPotionColor
+    - BlockEntityTag.Items.[].tag.SkullOwner.*
+    - BlockEntityTag.Items.[].tag.ChargedProjectiles.[].*
+    - BlockEntityTag.Items.[].tag.Charged
     - BlockEntityTag.Patterns.*
     - BlockStateTag.*
     - Potion
     - CustomPotionColor
     - CustomPotionEffects.*
     - map
-    - pages.*
     - LodestoneDimension
     - LodestonePos.*
     - SkullOwner.*
     - Fireworks.*
     - RepairCost
     - Items.*
+    - instrument
+    - resolved
+    - generation
     - author
     - title
-    - instrument
+    - pages.*
+    - ChargedProjectiles.[].*
+    - Charged
 
   # 不允許的標籤
   #   如果同個標籤存在於允許和不允許, 則優先不允許
@@ -48,22 +63,3 @@ item:
   #   If the same tag exists for both allowed and disallowed, then the priority is disallowed
   #   - "*" means all are disallow
   disallow-tag:
-
-
-# 權限相關
-# Permission related
-permissions:
-  # 擁有權限則可以獲得一些功能
-  # Some features are available with permission
-  node:
-    # 忽略標籤限制
-    #   不受到 `item.allowed-tag` 和 `item.disallow-tag` 影響
-    # Ignore tag restrictions
-    #   Not affected by `item.allowed-tag` and `item.disallow-tag`
-    ignore-item-tag-limit: "packetwhitelist.ignore_item_allowed_tag"
-
-  # 多少毫秒檢查一次玩家的權限
-  #   設置為 -1 禁用
-  # How many millisecond to check player permissions
-  #   Set to -1 Disable
-  periodic-millisecond-check: 60000

@@ -32,6 +32,7 @@ public final class Branch_19_Packet implements BranchPacket {
         List<org.bukkit.inventory.ItemStack> list = new ArrayList<>();
         packet.getItemList().forEach((item) -> list.add(convert.apply(item)));
         packet.setItemList(list);
+        packet.setCarriedItem(convert.apply(packet.getCarriedItem()));
     }
 
     @Override

@@ -17,10 +17,13 @@ public final class Branch_17_PacketWindowItems {
     }
 
     private static Field field_Items;
+    private static Field field_CarriedItem;
     static {
         try {
             field_Items = PacketPlayOutWindowItems.class.getDeclaredField("c"); // TODO 映射 items
+            field_CarriedItem = PacketPlayOutWindowItems.class.getDeclaredField("d"); // TODO 映射 carriedItem
             field_Items.setAccessible(true);
+            field_CarriedItem.setAccessible(true);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -47,6 +50,22 @@ public final class Branch_17_PacketWindowItems {
         }
         try {
             field_Items.set(packet, nonNullList);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public org.bukkit.inventory.ItemStack getCarriedItem() {
+        try {
+            return CraftItemStack.asBukkitCopy((ItemStack) field_CarriedItem.get(packet));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    public void setCarriedItem(org.bukkit.inventory.ItemStack item) {
+        try {
+            field_CarriedItem.set(packet, CraftItemStack.asNMSCopy(item));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -16,11 +16,11 @@ public final class Branch_16_PacketOpenWindowMerchant {
         this.packet = packet;
     }
 
-    private static Field field_ClientboundMerchantOffersPacket_offers;
+    private static Field field_offers;
     static {
         try {
-            field_ClientboundMerchantOffersPacket_offers = PacketPlayOutOpenWindowMerchant.class.getDeclaredField("b"); // TODO 映射 offers
-            field_ClientboundMerchantOffersPacket_offers.setAccessible(true);
+            field_offers = PacketPlayOutOpenWindowMerchant.class.getDeclaredField("b"); // TODO 映射 offers
+            field_offers.setAccessible(true);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -28,7 +28,7 @@ public final class Branch_16_PacketOpenWindowMerchant {
     public List<MerchantRecipe> getRecipeList() {
         List<MerchantRecipe> recipeList = new ArrayList<>();
         try {
-            ((MerchantRecipeList) field_ClientboundMerchantOffersPacket_offers.get(packet)).forEach(recipe -> recipeList.add(recipe.asBukkit()));
+            ((MerchantRecipeList) field_offers.get(packet)).forEach(recipe -> recipeList.add(recipe.asBukkit()));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -38,7 +38,7 @@ public final class Branch_16_PacketOpenWindowMerchant {
         MerchantRecipeList list = new MerchantRecipeList();
         recipeList.forEach(recipe -> list.add(CraftMerchantRecipe.fromBukkit(recipe).toMinecraft()));
         try {
-            field_ClientboundMerchantOffersPacket_offers.set(packet, list);
+            field_offers.set(packet, list);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
